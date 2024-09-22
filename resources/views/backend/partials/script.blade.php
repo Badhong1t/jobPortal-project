@@ -6,6 +6,8 @@
 <script src="{{ asset('backend') }}/assets/js/config.js"></script>
 <!-- build:js assets/vendor/js/core.js -->
 <script src="{{ asset('backend') }}/assets/vendor/libs/jquery/jquery.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script src="{{ asset('backend') }}/assets/vendor/libs/popper/popper.js"></script>
 <script src="{{ asset('backend') }}/assets/vendor/js/bootstrap.js"></script>
 <script src="{{ asset('backend') }}/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
@@ -25,7 +27,10 @@
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <script>
     $(document).ready(function() {
@@ -113,8 +118,5 @@
         @endif
     });
 </script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 @stack('scripts')

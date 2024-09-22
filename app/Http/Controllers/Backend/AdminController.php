@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Exception;
-use Illuminate\Validation\Validator;
+// use Illuminate\Validation\Validator;
+use Illuminate\Support\Facades\Validator;
+use App\Models\Social_Media_Fields;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -21,11 +24,15 @@ class AdminController extends Controller
         return view('backend.layouts.dashboard');
     }
 
-    function index(Request $request){
+    //Mail view method
 
-        return view('backend.partials.index');
+    function mailView(Request $request){
+
+        return view('backend.partials.mailSystem');
 
     }
+
+    //mail update settings method
 
     function mailSettingUpdate(Request $request){
 
@@ -84,8 +91,80 @@ class AdminController extends Controller
 
     }
 
-    return redirect()->back();
+    // return redirect()->back();
 
+    }
+
+    //social media view method
+
+    function socialMediaView(){
+
+        $social_link = Social_Media_Fields::latest('id')->get();
+        return view('backend.partials.socialMedia', compact('social_link'));
+
+    }
+
+    //Social media update settings method
+
+    function socialMediaUpdate(Request $request){
+
+        // Validate the request
+        $validator = Validator::make($request->all(), [
+            'social_media.*'    => 'required|string',
+            'profile_link.*'    => 'required|url',
+            'social_media_id.*' => 'sometimes|nullable|integer',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+        try {
+            $idsToUpdate = collect($request->social_media_id)->filter()->all();
+
+            // Update existing entries and collect their IDs
+            foreach ($request->social_media as $index => $media) {
+                $profileLink   = $request->profile_link[$index] ?? null;
+                $socialMediaId = $request->social_media_id[$index] ?? null;
+
+                if ($media && $profileLink) {
+                    $socialMedia = $socialMediaId ? Social_Media_Fields::find($socialMediaId) : new Social_Media_Fields();
+                    $socialMedia->social_media = $media;
+                    $socialMedia->profile_link = $profileLink;
+                    $socialMedia->save();
+
+                    // If updating, remove this ID from the $idsToUpdate array
+                    if (($key = array_search($socialMediaId, $idsToUpdate)) !== false) {
+                        unset($idsToUpdate[$key]);
+                    }
+                }
+            }
+
+            Social_Media_Fields::whereIn('id', $idsToUpdate)->delete();
+
+            return back()->with('t-success', 'Social media links updated successfully.');
+        } catch (Exception) {
+            return back()->with('t-error', 'Social media links failed update.');
+        }
+    }
+
+    public function destroy( $id) {
+        try {
+            // Correctly delete the SocialMedia record by ID
+            Social_Media_Fields::destroy($id);
+
+            DB::commit();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Social media link deleted successfully.',
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to delete social media link.',
+                'error'   => $e->getMessage(),
+            ], 500);
+        }
     }
 
 }

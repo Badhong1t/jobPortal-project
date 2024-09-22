@@ -374,12 +374,12 @@
         </a>
         <ul class="menu-sub">
           <li class="menu-item">
-            <a href="{{ route('backend.index') }}" class="menu-link">
+            <a href="{{ route('backend.mail.view') }}" class="menu-link">
               <div data-i18n="Mail Setting">Mail Setting</div>
             </a>
           </li>
           <li class="menu-item">
-            <a href="forms-input-groups.html" class="menu-link">
+            <a href="{{ route('backend.socialMedia.view') }}" class="menu-link">
               <div data-i18n="Social Media">Social Media</div>
             </a>
           </li>
