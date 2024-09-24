@@ -9,20 +9,15 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Dynamic Pages</h4>
-                        <p class="card-description">Setup your dynamic page, please <code> provide your valid
-                            data</code>.</p>
+                        <h4 class="card-title">Tags</h4>
                         <div style="display: flex;justify-content: end;"><a
-                                href="{{ route('dynamic_page.create') }}" class="btn btn-primary">Add Extra
-                                Services</a></div>
+                                href="{{ route('tag.create') }}" class="btn btn-primary">Add New Tag</a></div>
                         <div class="table-responsive mt-4 p-4">
                             <table class="table table-hover" id="data-table">
                                 <thead>
                                     <tr>
                                         <th>Sl</th>
-                                        <th>Page Title</th>
-                                        <th>Page Content</th>
-                                        <th>Status</th>
+                                        <th>Name</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -73,7 +68,7 @@
                     pagingType: "full_numbers",
                     dom: "<'row justify-content-between table-topbar'<'col-md-2 col-sm-4 px-0'l><'col-md-2 col-sm-4 px-0'f>>tipr",
                     ajax: {
-                        url: "{{ route('dynamic_page.index') }}",
+                        url: "{{ route('tag.index') }}",
                         type: "get",
                     },
 
@@ -84,20 +79,8 @@
                             searchable: false
                         },
                         {
-                            data: 'page_title',
-                            name: 'page_title',
-                            orderable: true,
-                            searchable: true
-                        },
-                        {
-                            data: 'page_content',
-                            name: 'page_content',
-                            orderable: true,
-                            searchable: true
-                        },
-                        {
-                            data: 'status',
-                            name: 'status',
+                            data: 'name',
+                            name: 'name',
                             orderable: true,
                             searchable: true
                         },
@@ -139,7 +122,7 @@
         };
         // Delete Button
         function deleteItem(id) {
-            var url = '{{ route('dynamic_page.delete', ':id') }}';
+            var url = '{{ route('tag.delete', ':id') }}';
             var csrfToken = '{{ csrf_token() }}';
             $.ajax({
                 type: "DELETE",
@@ -169,58 +152,6 @@
                     // location.reload();
                 } // Error
             })
-        }
-
-
-        // Status Change Confirm Alert
-        function showStatusChangeAlert(id) {
-            event.preventDefault();
-
-            Swal.fire({
-                title: 'Are you sure?',
-                text: 'You want to update the status?',
-                icon: 'info',
-                showCancelButton: true,
-                confirmButtonText: 'Yes',
-                cancelButtonText: 'No',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    statusChange(id);
-                }
-            });
-        }
-
-        // Status Change
-        function statusChange(id) {
-            var url = '{{ route('dynamic_page.status', ':id') }}';
-            $.ajax({
-                type: "GET",
-                url: url.replace(':id', id),
-                success: function(resp) {
-                    console.log(resp);
-                    // Reloade DataTable
-                    $('#data-table').DataTable().ajax.reload();
-                    if (resp.success === true) {
-                        // show toast message
-                        Swal.fire({
-                            title: "Good job!",
-                            text: resp.message,
-                            icon: "success"
-                        });
-                    } else if (resp.success == false) {
-                        Swal.fire({
-                            title: "Good job!",
-                            text: resp.message,
-                            icon: "success"
-                        });
-                    } else {
-                        toastr.error(resp.message);
-                    }
-                }, // success end
-                error: function(error) {
-                    // location.reload();
-                } // Erro
-            });
         }
     </script>
 @endpush

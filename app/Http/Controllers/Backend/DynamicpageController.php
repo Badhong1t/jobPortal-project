@@ -152,10 +152,10 @@ class DynamicpageController extends Controller
     function dynamicPageDelete($id){
         $page = DynamicPage::find($id);
         if(!$page){
-            return response()->json(['t-success' => false, 'message' => 'Page not found.']);
+            return response()->json(['success' => false, 'message' => 'Page not found.']);
         }else{
             $page->delete();
-            return response()->json(['t-success' => true, 'message' => 'Page deleted successfully.']);
+            return response()->json(['success' => true, 'message' => 'Page deleted successfully.']);
         }
     }
 }

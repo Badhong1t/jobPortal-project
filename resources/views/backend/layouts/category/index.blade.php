@@ -9,19 +9,16 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Dynamic Pages</h4>
-                        <p class="card-description">Setup your dynamic page, please <code> provide your valid
-                            data</code>.</p>
+                        <h4 class="card-title">All Category List</h4>
                         <div style="display: flex;justify-content: end;"><a
-                                href="{{ route('dynamic_page.create') }}" class="btn btn-primary">Add Extra
-                                Services</a></div>
+                                href="{{ route('category.create') }}" class="btn btn-primary">Add New Post</a></div>
                         <div class="table-responsive mt-4 p-4">
                             <table class="table table-hover" id="data-table">
                                 <thead>
                                     <tr>
                                         <th>Sl</th>
-                                        <th>Page Title</th>
-                                        <th>Page Content</th>
+                                        <th>Name</th>
+                                        <th>Image</th>
                                         <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
@@ -73,7 +70,7 @@
                     pagingType: "full_numbers",
                     dom: "<'row justify-content-between table-topbar'<'col-md-2 col-sm-4 px-0'l><'col-md-2 col-sm-4 px-0'f>>tipr",
                     ajax: {
-                        url: "{{ route('dynamic_page.index') }}",
+                        url: "{{ route('category.index') }}",
                         type: "get",
                     },
 
@@ -84,14 +81,14 @@
                             searchable: false
                         },
                         {
-                            data: 'page_title',
-                            name: 'page_title',
+                            data: 'name',
+                            name: 'name',
                             orderable: true,
                             searchable: true
                         },
                         {
-                            data: 'page_content',
-                            name: 'page_content',
+                            data: 'image',
+                            name: 'image',
                             orderable: true,
                             searchable: true
                         },
@@ -118,10 +115,8 @@
             }
         });
 
-
-
         // delete Confirm
-     function showDeleteConfirm(id) {
+        function showDeleteConfirm(id) {
             event.preventDefault();
             Swal.fire({
                 title: 'Are you sure you want to delete this record?',
@@ -139,7 +134,7 @@
         };
         // Delete Button
         function deleteItem(id) {
-            var url = '{{ route('dynamic_page.delete', ':id') }}';
+            var url = '{{ route('category.delete', ':id') }}';
             var csrfToken = '{{ csrf_token() }}';
             $.ajax({
                 type: "DELETE",
@@ -168,12 +163,10 @@
                 error: function(error) {
                     // location.reload();
                 } // Error
-            })
+            });
         }
-
-
-        // Status Change Confirm Alert
-        function showStatusChangeAlert(id) {
+         // Status Change Confirm Alert
+         function showStatusChangeAlert(id) {
             event.preventDefault();
 
             Swal.fire({
@@ -189,10 +182,9 @@
                 }
             });
         }
-
         // Status Change
         function statusChange(id) {
-            var url = '{{ route('dynamic_page.status', ':id') }}';
+            var url = '{{ route('category.status.update', ':id') }}';
             $.ajax({
                 type: "GET",
                 url: url.replace(':id', id),
@@ -207,7 +199,7 @@
                             text: resp.message,
                             icon: "success"
                         });
-                    } else if (resp.success == false) {
+                    } else if (resp.success ===false) {
                         Swal.fire({
                             title: "Good job!",
                             text: resp.message,

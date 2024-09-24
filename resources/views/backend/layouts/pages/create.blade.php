@@ -11,7 +11,7 @@
 
 <div class="content-wrapper">
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Dynamic Pages</h4>
@@ -27,9 +27,9 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="content" class="form-lable text-uppercase">Page Content:</label>
-                            <textarea id="content" class="form-control @error('page_content') is-invalid @enderror" placeholder="Page Content" rows="5" name="page_content">{{ old('page_content') }}</textarea>
+                            <textarea id="content" class="form-control" placeholder="Page Content" rows="5" name="page_content">{{ old('page_content') }}</textarea>
                             @error('page_content')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="mb-3">
