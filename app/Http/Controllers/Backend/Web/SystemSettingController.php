@@ -25,8 +25,8 @@ class SystemSettingController extends Controller
         $validator = Validator::make($request->all(), [
             'system_name' => 'nullable',
             'description' => 'nullable',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',  // Adding image validation
-            'favicon' => 'nullable|mimes:jpeg,png,jpg,gif,svg,ico|max:2048',  // Adding image validation
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'favicon' => 'mimes:jpeg,png,jpg,gif,svg,ico|max:2048',
             'copyright' => 'nullable',
         ]);
 
@@ -41,8 +41,8 @@ class SystemSettingController extends Controller
             $setting->copyright = $request->copyright;
 
             if ($request->hasFile('logo')) {
-                if (!empty($setting->logo)) {
-                    @unlink(public_path('/') . $setting->logo);
+                if (File::exists(public_path('backend/uploads') . $setting->logo)) {
+                    @unlink(public_path('backend/uploads') . $setting->logo);
                 }
 
 
@@ -54,8 +54,8 @@ class SystemSettingController extends Controller
             }
 
             if ($request->hasFile('favicon')) {
-                if (!empty($setting->favicon)) {
-                    @unlink(public_path('/') . $setting->favicon);
+                if (File::exists(public_path('backend/uploads') . $setting->favicon)) {
+                    File::delete(public_path('backend/uploads') . $setting->favicon);
                 }
                 $favicon = time() . '_' . $request->file('favicon')->getClientOriginalExtension();
                 // $favicon = uploadImage($request->file('favicon'), 'setting/favicon');

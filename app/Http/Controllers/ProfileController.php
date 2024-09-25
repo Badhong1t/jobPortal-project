@@ -111,11 +111,10 @@ class ProfileController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
         try {
-            $users = Auth::user();
+            $users =  Auth::user();
             if (Hash::check($request->old_password, $users->password)) {
                 $users->password = Hash::make($request->password);
 
-                // $user->save();
                 $users->save();
 
                 return redirect()->back()->with('t-success', 'Password updated successfully');
@@ -126,5 +125,9 @@ class ProfileController extends Controller
             return redirect()->back()->with('t-error', 'Something went wrong');
         }
     }
+
+
+
+
 
 }
