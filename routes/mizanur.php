@@ -3,6 +3,8 @@
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\CMS\MediaPage\GalleryController;
+use App\Http\Controllers\Backend\CMS\MediaPage\HeaderController;
 use App\Http\Controllers\Backend\DynamicpageController;
 use App\Http\Controllers\Backend\SocialmediaController;
 use App\Http\Controllers\Backend\SystemSettingController;
@@ -69,4 +71,21 @@ Route::controller(CategoryController::class)->group(function () {
     Route::post('/category/update/{id}', 'category_update')->name('category.update');
     Route::delete('/category/delete/{id}','category_delete')->name('category.delete');
     Route::get('/category/status/update/{id}', 'category_status_update')->name('category.status.update');
+})->middleware(['auth', 'verified']);
+
+
+//header routes---------
+Route::controller(HeaderController::class)->group(function () {
+    Route::get('/header/index', 'header_index')->name('header.index');
+    Route::post('/cms/media-page/header/update','header_update')->name('cms.media-page.header.update');
+})->middleware(['auth', 'verified']);
+
+//gallery routes---------
+Route::controller(GalleryController::class)->group(function () {
+    Route::get('/gallery_image/index', 'gallery_index')->name('gallery_image.index');
+    Route::get('/gallery_image/create', 'gallery_create')->name('gallery_image.create');
+    Route::post('/gallery_image/store', 'gallery_store')->name('gallery_image.store');
+    Route::get('/gallery_image/edit/{id}', 'gallery_edit')->name('gallery_image.edit');
+    Route::post('/gallery_image/update', 'gallery_update')->name('gallery_image.update');
+    Route::delete('/gallery_image/delete/{id}', 'gallery_delete')->name('gallery_image.delete');
 })->middleware(['auth', 'verified']);

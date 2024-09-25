@@ -160,20 +160,20 @@
           </li>
         </ul>
       </li>
-      <li class="menu-item">
+      <li class="menu-item {{ Request::routeIs('header.index') || Request::routeIs('gallery_image.index') ? 'active open' : '' }}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
-          <i class="menu-icon tf-icons bx bx-cube-alt"></i>
-          <div data-i18n="Misc">Misc</div>
+          <i class="menu-icon tf-icons bx bx-store"></i>
+          <div data-i18n="Misc">Media Pages</div>
         </a>
         <ul class="menu-sub">
-          <li class="menu-item">
-            <a href="pages-misc-error.html" class="menu-link">
-              <div data-i18n="Error">Error</div>
+          <li class="menu-item {{ Request::routeIs('header.index') ? 'active open' : '' }}">
+            <a href="{{ route('header.index') }}" class="menu-link">
+              <div data-i18n="Error">Header</div>
             </a>
           </li>
-          <li class="menu-item">
-            <a href="pages-misc-under-maintenance.html" class="menu-link">
-              <div data-i18n="Under Maintenance">Under Maintenance</div>
+          <li class="menu-item {{ Request::routeIs('gallery_image.index') ? 'active open' : '' }}">
+            <a href="{{ route('gallery_image.index') }}" class="menu-link">
+              <div data-i18n="Under Maintenance">Gallery Image</div>
             </a>
           </li>
         </ul>
@@ -203,18 +203,18 @@
       <!--Blog -->
       <li class="menu-header small text-uppercase"><span class="menu-header-text">Blogs</span></li>
       <!-- Forms -->
-      <li class="menu-item  {{  Request::routeIs('tag.*') || Request::routeIs('blog.*') ? 'active open' : '' }}">
+      <li class="menu-item  {{  Request::routeIs('tag.index') || Request::routeIs('blog.index') ? 'active open' : '' }}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bxl-blogger"></i>
           <div data-i18n="Form Elements">Blog</div>
         </a>
         <ul class="menu-sub">
-          <li class="menu-item {{ Request::routeIs('tag.*') ? 'active open' : '' }}">
+          <li class="menu-item {{ Request::routeIs('tag.index') ? 'active open' : '' }}">
             <a href="{{ route('tag.index') }}" class="menu-link">
               <div data-i18n="Basic Inputs">Tags</div>
             </a>
           </li>
-          <li class="menu-item {{ Request::routeIs('blog.*') ? 'active open' : '' }}">
+          <li class="menu-item {{ Request::routeIs('blog.index') ? 'active open' : '' }}">
             <a href="{{ route('blog.index') }}" class="menu-link">
               <div data-i18n="Input groups">Blog</div>
             </a>
