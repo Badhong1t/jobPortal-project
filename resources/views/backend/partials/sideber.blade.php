@@ -365,6 +365,58 @@
           <div data-i18n="Tables">Tables</div>
         </a>
       </li>
+
+       {{-- job post --}}
+
+       <li class="menu-header small text-uppercase"><span class="menu-header-text">JOB POSTS</span></li>
+       <li class="menu-item">
+         <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class='menu-icon tf-icons bx bxs-shopping-bag'></i>
+           <div data-i18n="Form Elements">Jobs</div>
+         </a>
+         <ul class="menu-sub">
+           <li class="menu-item">
+             <a href="" class="menu-link">
+               <div data-i18n="Job Category">Job Category</div>
+             </a>
+           </li>
+         </ul>
+       </li>
+
+        {{-- Country --}}
+
+      <li class="menu-header small text-uppercase"><span class="menu-header-text">COUNTRIES</span></li>
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class='menu-icon tf-icons bx bxs-flag-alt'></i>
+          <div data-i18n="Form Elements">Country list</div>
+        </a>
+        <ul class="menu-sub">
+            <li class="menu-item">
+              <a href="{{ route('backend.country.index') }}" class="menu-link">
+                <div data-i18n="Country">Country</div>
+              </a>
+            </li>
+          </ul>
+      </li>
+
+      {{-- statistics --}}
+
+      <li class="menu-header small text-uppercase"><span class="menu-header-text">Statistics</span></li>
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class='menu-icon tf-icons bx bx-stats'></i>
+          <div data-i18n="Form Elements">Statistic</div>
+        </a>
+        <ul class="menu-sub">
+            <li class="menu-item">
+              <a href="" class="menu-link">
+                <div data-i18n="Country">Statistic Update</div>
+              </a>
+            </li>
+          </ul>
+      </li>
+
       <!-- Setting -->
       <li class="menu-header small text-uppercase"><span class="menu-header-text">Settings</span></li>
       <li class="menu-item">
@@ -385,5 +437,8 @@
           </li>
         </ul>
       </li>
+
+
+
     </ul>
   </aside>

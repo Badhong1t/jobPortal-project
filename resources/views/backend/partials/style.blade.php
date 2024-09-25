@@ -20,7 +20,7 @@
 
     <link rel="stylesheet" href="{{ asset('backend') }}/assets/vendor/libs/apex-charts/apex-charts.css" />
 
-    <!-- All Css Links -->
+    {{-- <!-- All Css Links -->
  <link rel="stylesheet" href="{{ asset('frontend/css/plugins/aos.css') }}" />
  <link rel="stylesheet" href="{{ asset('frontend/css/plugins/bootstrap-icons.min.css') }}" />
  <link rel="stylesheet" href="{{ asset('frontend/css/plugins/bootstrap.min.css') }}" />
@@ -28,18 +28,20 @@
  <link rel="stylesheet" href="{{ asset('frontend/css/plugins/magnific-popup.min.css') }}" />
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-     crossorigin="anonymous" referrerpolicy="no-referrer" />
+     crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
 
  <!-- Custom Css Links -->
- <link rel="stylesheet" href="{{ asset('frontend/css/helper.css') }}" />
+ {{-- <link rel="stylesheet" href="{{ asset('frontend/css/helper.css') }}" />
  <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" />
- <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}" />
+ <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}" /> --}}
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" />
- <link rel="stylesheet" href="{{ asset('vendor/commentify/style.css') }}">
+ {{-- <link rel="stylesheet" href="{{ asset('vendor/commentify/style.css') }}"> --}}
 
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" />
 
- 
+ {{-- flat icon cdn --}}
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flat-ui/2.3.0/css/flat-ui.min.css" integrity="sha512-6f7HT84a/AplPkpSRSKWqbseRTG4aRrhadjZezYQ0oVk/B+nm/US5KzQkyyOyh0Mn9cyDdChRdS9qaxJRHayww==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
  <style>
      .VIpgJd-ZVi9od-ORHb-OEVmcd {

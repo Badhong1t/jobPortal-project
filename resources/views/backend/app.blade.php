@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
     <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
     <meta name="description" content="" />
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <!-- Page CSS -->
     @include('backend.partials.style')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+
   </head>
 
   <body>
