@@ -77,22 +77,11 @@ class ProfileController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
         try {
-            $user        = User::find(auth()->user()->id);
-            $user->name  = $request->name;
-            $user->email = $request->email;
-
-            $Image = null;
-            if ($request->hasFile('image')) {
-                $randomString = (string) Str::uuid();
-
-                $Image = $randomString.time() . '_' . $request->file('image')->getClientOriginalExtension();
-                $request->file('logo')->move(public_path('backend/uploads'), $Image);
-
-            }
-            $user->image = $Image;
-
-            $user->save();
-
+            $user = User::find(Auth::id());
+            $user->update([
+                'name'  => $request->name,
+                'email' => $request->email,
+            ]);
             return redirect()->back()->with('t-success', 'Profile updated successfully');
         } catch (Exception) {
             return redirect()->back()->with('t-error', 'Something went wrong');
@@ -125,9 +114,5 @@ class ProfileController extends Controller
             return redirect()->back()->with('t-error', 'Something went wrong');
         }
     }
-
-
-
-
 
 }

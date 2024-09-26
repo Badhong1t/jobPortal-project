@@ -200,83 +200,28 @@
           </li>
         </ul>
       </li>
-
-      <!-- Extended components -->
-      <li class="menu-item">
-        <a href="javascript:void(0)" class="menu-link menu-toggle">
-          <i class="menu-icon tf-icons bx bx-copy"></i>
-          <div data-i18n="Extended UI">Extended UI</div>
-        </a>
-        <ul class="menu-sub">
-          <li class="menu-item">
-            <a href="extended-ui-perfect-scrollbar.html" class="menu-link">
-              <div data-i18n="Perfect Scrollbar">Perfect scrollbar</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="extended-ui-text-divider.html" class="menu-link">
-              <div data-i18n="Text Divider">Text Divider</div>
-            </a>
-          </li>
-        </ul>
-      </li>
-
-      <li class="menu-item">
-        <a href="icons-boxicons.html" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-crown"></i>
-          <div data-i18n="Boxicons">Boxicons</div>
-        </a>
-      </li>
-
       <!-- Forms & Tables -->
       <li class="menu-header small text-uppercase"><span class="menu-header-text">Forms &amp; Tables</span></li>
       <!-- Forms -->
       <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-detail"></i>
-          <div data-i18n="Form Elements">Form Elements</div>
+          <div data-i18n="Form Elements">Company && Award</div>
         </a>
         <ul class="menu-sub">
           <li class="menu-item">
-            <a href="forms-basic-inputs.html" class="menu-link">
-              <div data-i18n="Basic Inputs">Basic Inputs</div>
+            <a href="{{ route('company.index') }}" class="menu-link">
+              <div data-i18n="Basic Inputs">Company</div>
             </a>
           </li>
           <li class="menu-item">
-            <a href="forms-input-groups.html" class="menu-link">
-              <div data-i18n="Input groups">Input groups</div>
+            <a href="{{ route('companyaward.index') }}" class="menu-link">
+              <div data-i18n="Input groups">Award</div>
             </a>
           </li>
         </ul>
       </li>
-      <li class="menu-item">
-        <a href="javascript:void(0);" class="menu-link menu-toggle">
-          <i class="menu-icon tf-icons bx bx-detail"></i>
-          <div data-i18n="Form Layouts">Form Layouts</div>
-        </a>
-        <ul class="menu-sub">
-          <li class="menu-item">
-            <a href="form-layouts-vertical.html" class="menu-link">
-              <div data-i18n="Vertical Form">Vertical Form</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="form-layouts-horizontal.html" class="menu-link">
-              <div data-i18n="Horizontal Form">Horizontal Form</div>
-            </a>
-          </li>
-        </ul>
-      </li>
-      <!-- Tables -->
-      <li class="menu-item">
-        <a href="tables-basic.html" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-table"></i>
-          <div data-i18n="Tables">Tables</div>
-        </a>
-      </li>
-
         {{-- Country --}}
-
       <li class="menu-header small text-uppercase"><span class="menu-header-text">COUNTRIES</span></li>
       <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -291,9 +236,6 @@
             </li>
           </ul>
       </li>
-
-
-
       <!--Blog -->
       <li class="menu-header small text-uppercase"><span class="menu-header-text">Blogs</span></li>
       <!-- Forms -->
@@ -346,5 +288,13 @@
                 </li>
             </ul>
         </li>
+
+        <li class="menu-item">
+            <a href="{{ route('profilesetting') }}" target="_blank" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-user"></i>
+            <div data-i18n="Documentation">Profile Setting</div>
+            </a>
+        </li>
+
     </ul>
   </aside>
