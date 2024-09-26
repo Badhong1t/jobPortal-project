@@ -27,6 +27,7 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Country Name</th>
+                                            <th>Country Image</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -102,6 +103,15 @@
                             name: 'country_name',
                             orderable: true,
                             searchable: true
+                        },
+                        {
+                            data: 'country_image',  // Use the actual data field name
+                            name: 'country_image',
+                            orderable: false,
+                            searchable: false,
+                            render: function(data, type, row, meta) {
+                                return '<img src="/storage/uploads/' + data + '" alt="Country Image" height="50" width="50"/>';
+                            }
                         },
                         {
                             data: 'action',
