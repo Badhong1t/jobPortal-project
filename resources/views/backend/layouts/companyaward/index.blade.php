@@ -143,62 +143,6 @@
             }
         });
 
-        // delete Confirm
-
-// function showDeleteConfirm(id) {
-//     event.preventDefault(); // Prevent default action
-
-//     Swal.fire({
-//         title: 'Are you sure you want to delete this record?',
-//         text: 'If you delete this, it will be gone forever.',
-//         icon: 'warning',
-//         showCancelButton: true,
-//         confirmButtonColor: '#3085d6',
-//         cancelButtonColor: '#d33',
-//         confirmButtonText: 'Yes, delete it!',
-//     }).then((result) => {
-//         if (result.isConfirmed) {
-//             deleteItem(id);
-//         }
-//     });
-// }
-
-// // Delete Item Function
-//     function deleteItem(id) {
-//         var url = '{{ route('companyaward.delete', ':id') }}';
-//         var csrfToken = '{{ csrf_token() }}';
-
-//         $.ajax({
-//             type: "DELETE",
-//             url: url.replace(':id', id),
-//             headers: {
-//                 'X-CSRF-TOKEN': csrfToken
-//             },
-//             success: function(resp) {
-//                 console.log(resp);
-//                 // Reload DataTable
-//                 $('#data-table').DataTable().ajax.reload();
-
-//                 // Show toast message based on response
-//                 if (resp.success === true) {
-//                     Swal.fire({
-//                     title: "Deleted!",
-//                     text: "Your file has been deleted.",
-//                     icon: "success"
-//                     });
-//                     // toastr.success(resp.message);
-//                 } else if (resp.errors) {
-//                     toastr.error(resp.errors[0]);
-//                 } else {
-//                     toastr.error(resp.message);
-//                 }
-//             },
-//         });
-//     }
-
-
-
-    //// jhfhjf
            // delete Confirm
            function showDeleteConfirm(id) {
             event.preventDefault();

@@ -16,8 +16,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    {{-- <link rel="icon" type="image/x-icon" href="{{ asset('backend/assets/img/favicon/favicon.ico') }}" /> --}}
-    {{-- <link rel="icon" type="image/x-icon" href="{{ asset('storage/' . $setting->favicon) ?? asset('frontend/images/favicon.png') }}" /> --}}
+
     @if (!empty($setting->favicon))
         <link rel="icon" type="image/x-icon" href="{{ asset('storage/' . $setting->favicon) }}">
     @else
