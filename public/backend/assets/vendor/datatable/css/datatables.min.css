@@ -447,9 +447,9 @@ div.dt-container div.dt-search label {
 }
 div.dt-container div.dt-search input {
     margin-left: 0.5em;
-    margin-bottom: 3rem;
     display: inline-block;
     width: auto;
+    margin-bottom: 18px;
 }
 div.dt-container div.dt-info {
     padding-top: 0.85em;

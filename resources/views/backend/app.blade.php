@@ -7,9 +7,6 @@
     <meta name="description" content="" />
     <!-- Page CSS -->
     @include('backend.partials.style')
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-
   </head>
 
   <body>
@@ -23,18 +20,16 @@
         <!-- Layout container -->
         <div class="layout-page">
           <!-- Navber HTML -->
-          @include('backend.partials.navbar')
+          @include('backend.partials.navber')
           <!-- Content wrapper -->
           <div class="content-wrapper">
-            <!-- Content -->
-            @yield('content')
-
-            <!-- Footer -->
-            @include('backend.partials.footer')
-
-            <div class="content-backdrop fade"></div>
+            <div class="container-xxl flex-grow-1 container-p-y">
+                <!-- Content -->
+                @yield('content')
+            </div>
           </div>
-          <!-- Content wrapper -->
+          <!-- Footer -->
+          @include('backend.partials.footer')
         </div>
         <!-- / Layout page -->
       </div>

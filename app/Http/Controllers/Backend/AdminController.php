@@ -10,6 +10,8 @@ use Exception;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Social_Media_Fields;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -23,7 +25,6 @@ class AdminController extends Controller
     {
         return view('backend.layouts.dashboard');
     }
-
     //Mail view method
 
     function mailView(Request $request){
