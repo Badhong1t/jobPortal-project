@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\Web\AwardController;
+use App\Http\Controllers\Backend\Web\BrachController;
+use App\Http\Controllers\Backend\Web\ContactsController;
 use App\Http\Controllers\Backend\Web\CompaniesController;
 use App\Http\Controllers\Backend\Web\SystemSettingController;
 
@@ -24,6 +26,7 @@ Route::get('/company/create',[CompaniesController::class,'companycreate'])->midd
 Route::post('/company/create',[CompaniesController::class,'companystore'])->middleware(['auth', 'verified'])->name('company.store');
 Route::get('/company/update/{id}',[CompaniesController::class,'companyedit'])->middleware(['auth', 'verified'])->name('company.edit');
 Route::patch('/company/update/{id}',[CompaniesController::class,'companyupdate'])->middleware(['auth', 'verified'])->name('company.update');
+Route::get('/company/status/{id}',[CompaniesController::class,'companystatus'])->middleware(['auth', 'verified'])->name('company.status');
 Route::delete('/company/delete/{id}',[CompaniesController::class,'companydelete'])->middleware(['auth', 'verified'])->name('company.delete');
 
 
@@ -33,6 +36,22 @@ Route::post('/companyaward/create',[AwardController::class,'companyawardstore'])
 Route::get('/companyaward/update/{id}',[AwardController::class,'companyawardedit'])->middleware(['auth', 'verified'])->name('companyaward.edit');
 Route::patch('/companyaward/update/{id}',[AwardController::class,'companyawardupdate'])->middleware(['auth', 'verified'])->name('companyaward.update');
 Route::delete('/companyaward/delete/{id}',[AwardController::class,'companyawarddelete'])->middleware(['auth', 'verified'])->name('companyaward.delete');
+
+
+Route::get('/branch-show',[BrachController::class,'allbranch'])->middleware(['auth', 'verified'])->name('companybrach.index');
+Route::get('/companybranch/create',[BrachController::class,'companybranchcreate'])->middleware(['auth', 'verified'])->name('companybranch.create');
+Route::post('/companybranch/create',[BrachController::class,'companybranchstore'])->middleware(['auth', 'verified'])->name('companybranch.store');
+Route::get('/companybranch/update/{id}',[BrachController::class,'companybranchedit'])->middleware(['auth', 'verified'])->name('companybranch.edit');
+Route::patch('/companybranch/update/{id}',[BrachController::class,'companybranchupdate'])->middleware(['auth', 'verified'])->name('companybranch.update');
+Route::get('/companybranch/status/{id}',[BrachController::class,'companybranchstatus'])->middleware(['auth', 'verified'])->name('companybranch.status');
+Route::delete('/companybranch/delete/{id}',[BrachController::class,'companybranchdelete'])->middleware(['auth', 'verified'])->name('companybranch.delete');
+
+
+
+Route::get('/contacts-show',[ContactsController::class,'allcontacts'])->middleware(['auth', 'verified'])->name('contacts.index');
+Route::get('/contacts/create',[ContactsController::class,'contactcreate'])->middleware(['auth', 'verified'])->name('contacts.create');
+Route::post('/contacts/create',[ContactsController::class,'contactstore'])->middleware(['auth', 'verified'])->name('contacts.store');
+Route::delete('/contacts/delete/{id}',[ContactsController::class,'contactdelete'])->middleware(['auth', 'verified'])->name('contacts.delete');
 
 
 require __DIR__.'/auth.php';

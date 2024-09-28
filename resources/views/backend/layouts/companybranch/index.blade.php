@@ -18,20 +18,20 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <h1>Award</h1>
+                    <h1>Branch</h1>
                     <div style="display: flex;justify-content: end;"><a
-                        href="{{ route('companyaward.create') }}" class="btn btn-primary mb-3">Create New</a></div>
+                        href="{{ route('companybranch.create') }}" class="btn btn-primary mb-3">Create New</a></div>
                     {{-- <a href="{{ route('company.create') }}">Create Company</a> --}}
-                    <table class="table table-hover" id="data-tables" style="width:1200px">
+                    <table class="table table-hover" id="data-table" style="width:1200px">
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Award Name</th>
-                                <th>Award Image</th>
                                 <th>Company Name</th>
-                                <th>Date</th>
-                                <th>Month</th>
-                                <th>Year</th>
+                                <th>Branch Name</th>
+                                <th>Address</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -63,8 +63,8 @@
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
                 }
             });
-            if (!$.fn.DataTable.isDataTable('#data-tables')) {
-                let dTable = $('#data-tables').DataTable({
+            if (!$.fn.DataTable.isDataTable('#data-table')) {
+                let dTable = $('#data-table').DataTable({
                     order: [],
                     lengthMenu: [
                         [25, 50, 100, 200, 500, -1],
@@ -88,7 +88,7 @@
                     pagingType: "full_numbers",
                     dom: "<'row justify-content-between table-topbar'<'col-md-2 col-sm-4 px-0'l><'col-md-2 col-sm-4 px-0'f>>tipr",
                     ajax: {
-                        url: "{{ route('companyaward.index') }}",
+                        url: "{{ route('companybrach.index') }}",
                         type: "get",
                     },
 
@@ -101,39 +101,40 @@
                             searchable: false
                         },
                         {
-                            data: 'award_name',
-                            name: 'award_name',
-                            orderable: false,
-                            searchable: false
-                        },
-
-                        {
-                            data: 'award_image',
-                            name: 'award_image',
-                            orderable: false,
-                            searchable: false
-                        },
-                        {
                             data: 'company',
                             name: 'company',
                             orderable: false,
                             searchable: false
                         },
                         {
-                            data: 'date',
-                            name: 'date',
+                            data: 'branch_name',
+                            name: 'branch_name',
+                            orderable: false,
+                            searchable: false
+                        },
+
+                        {
+                            data: 'address',
+                            name: 'address',
+                            orderable: false,
+                            searchable: false
+                        },
+
+                        {
+                            data: 'phone',
+                            name: 'phone',
                             orderable: false,
                             searchable: false
                         },
                         {
-                            data: 'month',
-                            name: 'month',
+                            data: 'email',
+                            name: 'email',
                             orderable: false,
                             searchable: false
                         },
                         {
-                            data: 'year',
-                            name: 'year',
+                            data: 'status',
+                            name: 'status',
                             orderable: false,
                             searchable: false
                         },
@@ -153,8 +154,60 @@
             }
         });
 
-           // delete Confirm
-           function showDeleteConfirm(id) {
+
+
+                 // Status Change Confirm Alert
+         function showStatusChangeAlert(id) {
+            event.preventDefault();
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'You want to update the status?',
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonText: 'Yes update it',
+                // cancelButtonText: 'No',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    status(id);
+                }
+            });
+        }
+        // Status Change
+        function status(id) {
+            var url = '{{ route('companybranch.status', ':id') }}';
+            $.ajax({
+                type: "GET",
+                url: url.replace(':id', id),
+                success: function(resp) {
+                    console.log(resp);
+                    // Reloade DataTable
+                    $('#data-table').DataTable().ajax.reload();
+                    if (resp.success === true) {
+                        // show toast message
+                        Swal.fire({
+                            title: "Good job!",
+                            text: "Unpublished Successfully.",
+                            icon: "success"
+                        });
+                    } else if (resp.success === false) {
+                        Swal.fire({
+                            title: "Good job!",
+                            text: "published Successfully.",
+                            icon: "success"
+                        });
+                    } else {
+                        toastr.error(resp.message);
+                    }
+                }, // success end
+                error: function(error) {
+                    // location.reload();
+                } // Erro
+            });
+        }
+
+                 // delete Confirm
+                 function showDeleteConfirm(id) {
             event.preventDefault();
             Swal.fire({
                 title: 'Are you sure you want to delete this record?',
@@ -170,9 +223,10 @@
                 }
             });
         };
+
         // Delete Button
         function deleteItem(id) {
-            var url = '{{ route('companyaward.delete', ':id') }}';
+            var url = '{{ route('companybranch.delete', ':id') }}';
             var csrfToken = '{{ csrf_token() }}';
                 $.ajax({
                 type: "DELETE",
@@ -183,7 +237,7 @@
                 success: function(resp) {
                     console.log(resp);
                     // Reloade DataTable
-                    $('#data-tables').DataTable().ajax.reload();
+                    $('#data-table').DataTable().ajax.reload();
 
                     if (resp.success == true) {
                         Swal.fire({
@@ -198,7 +252,7 @@
                     } else {
                         toastr.error(resp.message);
                     }
-                    // location.reload();
+                    location.reload();
                 }, // success end
 
             })
