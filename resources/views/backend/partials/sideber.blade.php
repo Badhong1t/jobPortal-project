@@ -114,6 +114,21 @@
       <li class="menu-header small text-uppercase">
         <span class="menu-header-text">Pages</span>
       </li>
+
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class='menu-icon tf-icons bx bxs-book-content'></i>
+          <div data-i18n="Content Section">Content Section</div>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="" class="menu-link">
+              <div data-i18n="Content">Find Work</div>
+            </a>
+          </li>
+        </ul>
+      </li>
+
       <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-dock-top"></i>
