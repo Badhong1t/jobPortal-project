@@ -1,8 +1,7 @@
 @extends('backend.app')
 
-@section('title', 'Company Dashboard')
+@section('title', 'Dashboard')
 
-@section('content')
 @push('style')
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css">
     <style>
@@ -11,62 +10,70 @@
         }
     </style>
 @endpush
-
+@section('content')
     <div class="content-wrapper">
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Create Company</h4>
-                        <p class="card-description">Create company, please <code>provide your valid
+                        <h4 class="card-title">Create Branch</h4>
+                        <p class="card-description">Create branch, please <code>provide your valid
                                 data</code>.</p>
                         <div class="mt-4">
-                            <form class="forms-sample" method="POST" action="{{ route('company.store') }}"
+                            <form class="forms-sample" method="POST" action="{{ route('contacts.store') }}"
                                 enctype="multipart/form-data">
                                 @csrf
+
                                 <div class="form-group row mb-3">
                                     <div class="col">
-                                        <label class="form-lable" for="basic-default-system_name">Company Name:</label>
+                                        <label class="form-lable" for="basic-default-name">Full Name :</label>
                                         <input type="text"
-                                            class="form-control form-control-md border-left-0 @error('company_name') is-invalid @enderror"
-                                            placeholder="Company Name" id="basic-default-company_name" name="company_name" >
-                                        @error('company_name')
+                                            class="form-control form-control-md border-left-0 @error('name') is-invalid @enderror"
+                                            placeholder="name ..." id="basic-default-name" name="name" >
+                                        @error('name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
 
-                                    <div class="col">
-                                        <label class="form-lable" for="basic-default-country_name">Country Name:</label>
-                                        <input type="text"
-                                            class="form-control form-control-md border-left-0 @error('country_name') is-invalid @enderror"
-                                            placeholder="Country Name" id="basic-default-country_name" name="country_name" >
-                                        @error('country_name')
+                                </div>
+                                <div>
+                                    <div class="col  mb-3">
+                                        <label class="form-lable" for="basic-default-company">Select Company :</label>
+                                            <select name="company" id="basic-default-company" class="form-control form-control-md border-left-0 @error('company') is-invalid @enderror">
+                                                <option value="" selected>Select an option</option>
+                                                @foreach ($companys as $company)
+                                                <option value="{{ $company->id }}">{{ $company->company_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        @error('company')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
-
+                                </div>
+                                <div class="form-group row mb-3">
                                     <div class="col">
-                                        <label class="form-lable" for="basic-default-email">Email:</label>
-                                        <input type="email"
+                                        <label class="form-lable" for="basic-default-email">Email :</label>
+                                        <input type="text"
                                             class="form-control form-control-md border-left-0 @error('email') is-invalid @enderror"
-                                            placeholder="Email" id="basic-default-email" name="email">
+                                            placeholder="email ..." id="basic-default-email" name="email" >
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
+                                </div>
 
+                                <div class="form-group row mb-3">
                                     <div class="col">
-                                        <label>Phone:</label>
+                                        <label class="form-lable" for="basic-default-phone">Phone :</label>
                                         <input type="text"
                                             class="form-control form-control-md border-left-0 @error('phone') is-invalid @enderror"
-                                            placeholder="phone ..." name="phone"
-                                            >
+                                            placeholder="Phone ..." id="basic-default-phone" name="phone" >
                                         @error('phone')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -74,26 +81,13 @@
                                         @enderror
                                     </div>
 
-                                    <div class="col">
-                                        <label>Status:</label>
-                                        <input class=" border-left-0 @error('status') is-invalid @enderror" type="radio" name="status" value="1"> Active
-                                        <input type="radio" name="status" value="0"> Inactive
-                                        @error('status')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
                                 </div>
-
                                 <div class="form-group row mb-3">
                                     <div class="col">
-                                        <label>Company Logo:</label>
-                                        <input type="file"
-                                            class="form-control form-control-md border-left-0 dropify @error('logo') is-invalid @enderror"
-                                            name="logo"
-                                            data-default-file="@isset($setting){{ asset('uploads/' . $setting->logo) }}@endisset">
-                                        @error('logo')
+                                        <label class="form-lable" for="basic-default-message">Message :</label>
+                                        <textarea id="basic-default-message" class="form-control @error('message') is-invalid @enderror" name="message"></textarea>
+
+                                        @error('message')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -101,16 +95,6 @@
                                     </div>
 
                                 </div>
-                                <div class="form-group mb-3">
-                                    <label>Address</label>
-                                    <textarea id="editor" class="form-control @error('description') is-invalid @enderror" name="description">{{ $setting->description ?? '' }}</textarea>
-                                    @error('description')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-
                                 <button type="submit" class="btn btn-primary me-2">Submit</button>
                             </form>
                         </div>
@@ -131,7 +115,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor5/41.3.1/ckeditor.min.js"></script>
 
     <script type="text/javascript" src="https://jeremyfagis.github.io/dropify/dist/js/dropify.min.js"></script>
-
 
     <script>
         ClassicEditor
