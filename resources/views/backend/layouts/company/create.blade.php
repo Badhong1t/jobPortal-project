@@ -103,7 +103,7 @@
                                 </div>
                                 <div class="form-group mb-3">
                                     <label>Address</label>
-                                    <textarea id="editor" class="form-control @error('description') is-invalid @enderror" name="description">{{ $setting->description ?? '' }}</textarea>
+                                    <textarea id="editor" class="form-control @error('description') is-invalid @enderror" name="description"></textarea>
                                     @error('description')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

@@ -16,8 +16,8 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Create Branch</h4>
-                        <p class="card-description">Create branch, please <code>provide your valid
+                        <h4 class="card-title">Message</h4>
+                        <p class="card-description">Message, please <code>provide your valid
                                 data</code>.</p>
                         <div class="mt-4">
                             <form class="forms-sample" method="POST" action="{{ route('contacts.store') }}"

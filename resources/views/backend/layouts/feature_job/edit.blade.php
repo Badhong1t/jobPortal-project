@@ -1,6 +1,6 @@
 @extends('backend.app')
 
-@section('title', 'Dashboard')
+@section('title', 'Company Dashboard')
 
 @push('style')
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css">
@@ -11,65 +11,53 @@
     </style>
 @endpush
 
+
+
 @section('content')
     <div class="content-wrapper">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">System Setting</h4>
-                        <p class="card-description">Setup your system, please <code>provide your valid
+                        <h4 class="card-title">Edit </h4>
+                        <p class="card-description">Edit feature job, please <code>provide your valid
                                 data</code>.</p>
                         <div class="mt-4">
-                            <form class="forms-sample" method="POST" action="{{ route('system.update') }}"
+                            <form class="forms-sample" method="POST" action="{{ route('featurejob.update', $job->id )}}"
+                            {{-- {{ route('company.store') }} --}}
                                 enctype="multipart/form-data">
+                                {{-- {{ route('system.update') }} --}}
                                 @csrf
+                                @method('patch')
                                 <div class="form-group row mb-3">
-                                    <div class="col">
-                                        <label class="form-lable" for="basic-default-system_name">System Email:</label>
-                                        <input type="email"
-                                            class="form-control form-control-md border-left-0 @error('system_name') is-invalid @enderror"
-                                            placeholder="Email" id="basic-default-system_name" name="system_name" value="{{ $setting->system_name ?? '' }}">
-                                        @error('system_name')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
 
                                     <div class="col">
-                                        <label>Copy Rights Text:</label>
+                                        <label class="form-lable" for="basic-default-feature_name">Feature Name:</label>
                                         <input type="text"
-                                            class="form-control form-control-md border-left-0 @error('copyright') is-invalid @enderror"
-                                            placeholder="Copy Rights" name="copyright"
-                                            value="{{ $setting->copyright ?? '' }}">
-                                        @error('copyright')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row mb-3">
-                                    <div class="col">
-                                        <label>Logo:</label>
-                                        <input type="file"
-                                            class="form-control form-control-md border-left-0 dropify @error('logo') is-invalid @enderror"
-                                            name="logo"
-                                            data-default-file="@isset($setting){{ asset('backend/uploads/' . $setting->logo) }}@endisset">
-                                        @error('logo')
+                                            class="form-control form-control-md border-left-0 @error('feature_name') is-invalid @enderror"
+                                            placeholder="Feature Name" id="basic-default-feature_name" name="feature" value="{{ $job->feature }}">
+                                        @error('feature_name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
                                     <div class="col">
-                                        <label>Favicon:</label>
-                                        <input type="file"
-                                            class="form-control form-control-md border-left-0 dropify @error('favicon') is-invalid @enderror"
-                                            name="favicon"
-                                            data-default-file="@isset($setting){{ asset('backend/uploads/' . $setting->favicon) }}@endisset">
-                                        @error('favicon')
+                                        <label class="form-lable" for="basic-default-price">Price:</label>
+                                        <input type="text"
+                                            class="form-control form-control-md border-left-0 @error('price') is-invalid @enderror"
+                                            placeholder="Price ..." id="basic-default-price" name="price" value="{{ $job->price }}">
+                                        @error('price')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col">
+                                        <label>Status:</label>
+                                        <input class=" border-left-0 @error('status') is-invalid @enderror" type="radio" name="status" value="1" {{ $job->status == 1 ? 'checked' : '' }}> Active
+                                        <input type="radio" name="status" value="0" {{ $job->status == 0 ? 'checked' : '' }}> Inactive
+                                        @error('status')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -77,8 +65,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label>About System</label>
-                                    <textarea id="editor" class="form-control @error('description') is-invalid @enderror" name="description">{{ $setting->description ?? '' }}</textarea>
+                                    <label>Feature Details:</label>
+                                    <textarea id="editor" class="form-control @error('description') is-invalid @enderror" name="details" >{{ $job->details ?? '' }}</textarea>
                                     @error('description')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -95,6 +83,13 @@
         </div>
     </div>
 @endsection
+
+
+
+
+
+
+
 @push('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor5/41.3.1/ckeditor.min.js"></script>
 
@@ -113,3 +108,4 @@
         $('.dropify').dropify();
     </script>
 @endpush
+

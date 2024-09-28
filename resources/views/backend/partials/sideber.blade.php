@@ -126,6 +126,11 @@
               <div data-i18n="Content">Find Work</div>
             </a>
           </li>
+          <li class="menu-item {{ Request::routeIs('talent.index') ? 'active open' : '' }}">
+            <a href="{{ route('talent.index') }}" class="menu-link">
+              <div data-i18n="Error">Find Talent</div>
+            </a>
+          </li>
         </ul>
       </li>
 
@@ -278,6 +283,23 @@
         </ul>
     </li>
 
+        {{-- feature --}}
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Feature Job</span></li>
+        <li class="menu-item {{  Request::routeIs('featurejob.*') ? 'active open' : '' }}">
+          <a href="javascript:void(0);" class="menu-link menu-toggle ">
+              <i class='menu-icon tf-icons bx bxs-flag-alt'></i>
+            <div data-i18n="Form Elements">Feature Job</div>
+          </a>
+          <ul class="menu-sub">
+              <li class="menu-item {{ Request::routeIs('featurejob.*') ? 'active open' : '' }}">
+                <a href="{{ route('featurejob.index') }}" class="menu-link">
+                  <div data-i18n="Feature">Feature</div>
+                </a>
+              </li>
+            </ul>
+        </li>
+
+        {{-- Message --}}
     <li class="menu-header small text-uppercase"><span class="menu-header-text">Message</span></li>
     <li class="menu-item  {{ Request::routeIs('contacts.index') ? 'active open' : '' }}">
       <a href="javascript:void(0);" class="menu-link menu-toggle">
