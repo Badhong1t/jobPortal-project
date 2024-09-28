@@ -11,6 +11,15 @@ class Company extends Model
 
     public function awards()
     {
-        return $this->hasMany(CompanyAward::class);
+        return $this->hasMany(CompanyAward::class,"company_id","id");
+    }
+
+    public function branchs()
+    {
+        return $this->hasMany(CompanyBranch::class,"company_id","id");
+    }
+    public function contacts()
+    {
+        return $this->hasMany(Contact::class,"company_id","id");
     }
 }

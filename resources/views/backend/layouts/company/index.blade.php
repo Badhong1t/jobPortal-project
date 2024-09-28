@@ -11,31 +11,40 @@
 @endpush
 
 {{-- @extends('layouts.app') --}}
-
 @section('content')
-    <h1>Companies</h1>
-    <div style="display: flex;justify-content: end;"><a
-        href="{{ route('company.create') }}" class="btn btn-primary mb-3">Create Company</a></div>
-    <table class="table table-hover" id="data-table" style="width:1200px">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Country Name</th>
-                <th>Company Logo</th>
-                <th>Address</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">Companies</h1>
+                    <div style="display: flex;justify-content: end;"><a
+                        href="{{ route('company.create') }}" class="btn btn-primary mb-3">Create Company</a></div>
+                    <table class="table table-hover" id="data-table" style="width:1200px">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Country Name</th>
+                                <th>Company Logo</th>
+                                <th>Address</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-        </tbody>
-    </table>
+                        </tbody>
+                    </table>
+             </div>
+          </div>
+        </div>
+     </div>
+  </div>
+
 @endsection
-
 @push('script')
     {{-- Datatable --}}
     <script src="{{ url('backend/vendors/datatable/js/datatables.min.js') }}"></script>
@@ -149,6 +158,62 @@
             }
         });
 
+
+
+
+        // Status Change Confirm Alert
+        function showStatusChangeAlert(id) {
+            event.preventDefault();
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'You want to update the status?',
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonText: 'Yes update it',
+                // cancelButtonText: 'No',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    status(id);
+                }
+            });
+        }
+        // Status Change
+        function status(id) {
+            var url = '{{ route('company.status', ':id') }}';
+            $.ajax({
+                type: "GET",
+                url: url.replace(':id', id),
+                success: function(resp) {
+                    console.log(resp);
+                    // Reloade DataTable
+                    $('#data-table').DataTable().ajax.reload();
+                    if (resp.success === true) {
+                        // show toast message
+                        Swal.fire({
+                            title: "Good job!",
+                            text: "Unpublished Successfully.",
+                            icon: "success"
+                        });
+                    } else if (resp.success === false) {
+                        Swal.fire({
+                            title: "Good job!",
+                            text: "published Successfully.",
+                            icon: "success"
+                        });
+                    } else {
+                        toastr.error(resp.message);
+                    }
+                }, // success end
+                error: function(error) {
+                    // location.reload();
+                } // Erro
+            });
+        }
+
+
+
+
         // delete Confirm
         function showDeleteConfirm(id) {
             event.preventDefault();
@@ -207,5 +272,7 @@
         }
 
     </script>
+
 @endpush
+
 

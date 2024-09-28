@@ -10,7 +10,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
-// use Symfony\Component\HttpFoundation\File\File;
 use Illuminate\Support\Facades\File;
 
 class AwardController extends Controller
@@ -39,7 +38,7 @@ class AwardController extends Controller
                                   <a href="' . route('companyaward.edit',  $data->id) . '" type="button" class="btn btn-primary text-white" title="Edit">
                                   <i class="bi bi-pencil"></i>Edit
                                   </a>
-                                  <a href="#" onclick="showDeleteConfirm(' . $data->id . ')" type="button" class="btn btn-danger text-white" title="Delete">
+                                  <a href="' . route('company.delete',  $data->id) . '" onclick="showDeleteConfirm(' . $data->id . ')" type="button" class="btn btn-danger text-white" title="Delete">
                                   <i class="bi bi-trash"></i>Delete
                                 </a>
                                 </div>';

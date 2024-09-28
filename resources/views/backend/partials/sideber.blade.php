@@ -201,35 +201,40 @@
         </ul>
       </li>
       <!-- Forms & Tables -->
-      <li class="menu-header small text-uppercase"><span class="menu-header-text">Forms &amp; Tables</span></li>
+      <li class="menu-header small text-uppercase"><span class="menu-header-text">Company &amp; branch</span></li>
       <!-- Forms -->
-      <li class="menu-item">
+      <li class="menu-item {{  Request::routeIs('company.index') || Request::routeIs('companyaward.index') || Request::routeIs('companybrach.index')  ? 'active open' : '' }}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
-          <i class="menu-icon tf-icons bx bx-detail"></i>
-          <div data-i18n="Form Elements">Company && Award</div>
+          <i class="menu-icon tf-icons bx bx-box"></i>
+          <div data-i18n="Form Elements">Company</div>
         </a>
         <ul class="menu-sub">
-          <li class="menu-item">
+          <li class="menu-item {{  Request::routeIs('company.*') ? 'active open' : '' }}">
             <a href="{{ route('company.index') }}" class="menu-link">
-              <div data-i18n="Basic Inputs">Company</div>
+              <div data-i18n="Basic Inputs">Companies</div>
             </a>
           </li>
-          <li class="menu-item">
+          <li class="menu-item {{  Request::routeIs('companyaward.*') ? 'active open' : '' }}">
             <a href="{{ route('companyaward.index') }}" class="menu-link">
-              <div data-i18n="Input groups">Award</div>
+              <div data-i18n="Input groups">Awards</div>
+            </a>
+          </li>
+          <li class="menu-item {{  Request::routeIs('companybrach.*') ? 'active open' : '' }}">
+            <a href="{{ route('companybrach.index') }}" class="menu-link">
+              <div data-i18n="Input groups">Branchs</div>
             </a>
           </li>
         </ul>
       </li>
         {{-- Country --}}
       <li class="menu-header small text-uppercase"><span class="menu-header-text">COUNTRIES</span></li>
-      <li class="menu-item">
-        <a href="javascript:void(0);" class="menu-link menu-toggle">
+      <li class="menu-item {{  Request::routeIs('backend.country.*') ? 'active open' : '' }}">
+        <a href="javascript:void(0);" class="menu-link menu-toggle ">
             <i class='menu-icon tf-icons bx bxs-flag-alt'></i>
           <div data-i18n="Form Elements">Country list</div>
         </a>
         <ul class="menu-sub">
-            <li class="menu-item">
+            <li class="menu-item {{ Request::routeIs('backend.country.*') ? 'active open' : '' }}">
               <a href="{{ route('backend.country.index') }}" class="menu-link">
                 <div data-i18n="Country">Country</div>
               </a>
@@ -258,20 +263,41 @@
         </ul>
     </li>
 
+    <li class="menu-header small text-uppercase"><span class="menu-header-text">Message</span></li>
+    <li class="menu-item  {{ Request::routeIs('contacts.index') ? 'active open' : '' }}">
+      <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class='menu-icon tf-icons bx bx-detail'></i>
+        <div data-i18n="Form Elements">Message</div>
+      </a>
+      <ul class="menu-sub">
+          <li class="menu-item  {{ Request::routeIs('contacts.index') ? 'active open' : '' }}">
+            <a href="{{ route('contacts.index') }}" class="menu-link">
+              <div data-i18n="Message">Message</div>
+            </a>
+          </li>
+        </ul>
+    </li>
+
       <!-- Settings -->
       <li class="menu-header small text-uppercase"><span class="menu-header-text">Settings</span></li>
-        <li class="menu-item {{  Request::routeIs('socialmedia.*') || Request::routeIs('dynamic_page.*') || Request::routeIs('stripe.*') ? 'active open' : '' }}">
+        <li class="menu-item {{  Request::routeIs('socialmedia.*') || Request::routeIs('dynamic_page.*') || Request::routeIs('stripe.*') || Request::routeIs('system.*') || Request::routeIs('backend.socialMedia.*') || Request::routeIs('backend.mail.*') ? 'active open' : '' }}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons bx bx-cog"></i>
             <div data-i18n="Form Elements">System Settings</div>
         </a>
             <ul class="menu-sub">
-                <li class="menu-item">
+                <li class="menu-item {{ Request::routeIs('system.*') ? 'active open' : '' }}">
+                    <a class="menu-link"
+                    href="{{ route('system.setting') }}">
+                    <div data-i18n="Setting">Settings</div>
+                </a>
+                </li>
+                <li class="menu-item {{ Request::routeIs('backend.mail.*') ? 'active open' : '' }}">
                   <a href="{{ route('backend.mail.view') }}" class="menu-link">
                     <div data-i18n="Mail Setting">Mail Setting</div>
                   </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item {{ Request::routeIs('backend.socialMedia.*') ? 'active open' : '' }}">
                   <a href="{{ route('backend.socialMedia.view') }}" class="menu-link">
                     <div data-i18n="Social Media">Social Media</div>
                   </a>
@@ -289,11 +315,20 @@
             </ul>
         </li>
 
-        <li class="menu-item">
-            <a href="{{ route('profilesetting') }}" target="_blank" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-user"></i>
-            <div data-i18n="Documentation">Profile Setting</div>
-            </a>
+
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Profile Setting</span></li>
+        <li class="menu-item  {{ Request::routeIs('profilesetting') ? 'active open' : '' }}">
+          <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class='menu-icon tf-icons bx bx-user'></i>
+            <div data-i18n="Form Elements">Profile</div>
+          </a>
+          <ul class="menu-sub">
+              <li class="menu-item  {{ Request::routeIs('profilesetting') ? 'active open' : '' }}">
+                <a href="{{ route('profilesetting') }}" class="menu-link">
+                  <div data-i18n="Message">Setting</div>
+                </a>
+              </li>
+            </ul>
         </li>
 
     </ul>

@@ -49,7 +49,7 @@ class CompaniesController extends Controller
                 ->addColumn('status', function ($data) {
                     $status = ' <div class="form-check form-switch" style="margin-left:40px;">';
                     $status .= ' <input onclick="showStatusChangeAlert(' . $data->id . ')" type="checkbox" class="form-check-input" id="customSwitch' . $data->id . '" getAreaid="' . $data->id . '" name="status"';
-                    if ($data->status == "1") {
+                    if ($data->status == 1) {
                         $status .= "checked";
                     }
                     $status .= '><label for="customSwitch' . $data->id . '" class="form-check-label" for="customSwitch"></label></div>';
@@ -57,10 +57,6 @@ class CompaniesController extends Controller
                     return $status;
                 })
 
-
-                // ->addColumn('status', function ($data) {
-                //     return $data->status;
-                // })
                 ->addColumn('action', function ($data) {
                     return '<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                                   <a href="' . route('company.edit',  $data->id) . '" type="button" class="btn btn-primary text-white" title="Edit">
@@ -128,13 +124,7 @@ class CompaniesController extends Controller
 
     }
 
-      // Display the specified company
-    // public function show(Company $company)
-    // {
-    //     return view('companies.show', compact('company'));
-    // }
-
-      // Show the form for editing the specified company
+  
     public function companyedit(Company $companys, $id)
 
     {
@@ -186,9 +176,39 @@ class CompaniesController extends Controller
         } catch (Exception $e) {
             return back()->with('t-error', 'Failed to update');
         }
-
-
     }
+
+      //__ status update method__//
+      function companystatus($id)
+      {
+          $data = Company::where('id', $id)->first();
+          // dd($data);
+          if ($data->status == 1) {
+              // If the current status is active, change it to inactive
+              $data->status = 0;
+              $data->save();
+
+              // Return JSON response indicating success with message and updated data
+              return response()->json([
+                  'success' => false,
+                  'message' => 'Successfully.',
+                  'data' => $data,
+              ]);
+          } else {
+              // If the current status is inactive, change it to active
+              $data->status = 1;
+              $data->save();
+
+              // Return JSON response indicating success with a message and updated data.
+              return response()->json([
+                  'success' => true,
+                  'message' => 'Error.',
+                  'data' => $data,
+              ]);
+          }
+      }
+
+
 
     // Remove the specified company from storage
     public function companydelete($id)
