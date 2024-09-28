@@ -54,7 +54,7 @@ class BlogController extends Controller
                 })
                 ->rawColumns(['title','status','image','action'])
                 ->make(true);
-            }
+        }
         return view('backend.layouts.blog.index');
     }
 
