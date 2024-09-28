@@ -17,21 +17,16 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <h1 class="card-title">Companies</h1>
+                    <h1 class="card-title">Companies FAQ</h1>
                     <div style="display: flex;justify-content: end;"><a
-                        href="{{ route('company.create') }}" class="btn btn-primary mb-3">Create Company</a></div>
+                        href="{{ route('for_companies.create') }}" class="btn btn-primary mb-3">ADD Company FAQ</a></div>
                     <div class="table-responsive mt-4 p-4">
                         <table class="table table-hover" id="data-table">
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Phone</th>
-                                    <th>Email</th>
-                                    <th>Country Name</th>
-                                    <th>Company Logo</th>
-                                    <th>Address</th>
-                                    <th>Status</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -40,11 +35,12 @@
                             </tbody>
                         </table>
                     </div>
-             </div>
-          </div>
+                </div>
+            </div>
         </div>
-     </div>
-  </div>
+    </div>
+</div>
+
 
 @endsection
 @push('script')
@@ -90,7 +86,7 @@
                     pagingType: "full_numbers",
                     dom: "<'row justify-content-between table-topbar'<'col-md-2 col-sm-4 px-0'l><'col-md-2 col-sm-4 px-0'f>>tipr",
                     ajax: {
-                        url: "{{ route('company.index') }}",
+                        url: "{{ route('for_companies.index') }}",
                         type: "get",
                     },
 
@@ -103,45 +99,14 @@
                             searchable: false
                         },
                         {
-                            data: 'company_name',
-                            name: 'company_name',
+                            data: 'title',
+                            name: 'title',
                             orderable: false,
                             searchable: false
                         },
                         {
-                            data: 'phone',
-                            name: 'phone',
-                            orderable: false,
-                            searchable: false
-                        },
-                        {
-                            data: 'email',
-                            name: 'email',
-                            orderable: false,
-                            searchable: false
-                        },
-                        {
-                            data: 'country_name',
-                            name: 'country_name',
-                            orderable: false,
-                            searchable: false
-                        },
-                        {
-                            data: 'company_log',
-                            name: 'company_log',
-                            orderable: false,
-                            searchable: false
-                        },
-
-                    {
-                            data: 'address',
-                            name: 'address',
-                            orderable: false,
-                            searchable: false
-                        },
-                    {
-                            data: 'status',
-                            name: 'status',
+                            data: 'description',
+                            name: 'descriptions',
                             orderable: false,
                             searchable: false
                         },
@@ -235,7 +200,7 @@
         };
         // Delete Button
         function deleteItem(id) {
-            var url = '{{ route('company.delete', ':id') }}';
+            var url = '{{ route('for_companies.delete', ':id') }}';
             var csrfToken = '{{ csrf_token() }}';
                     $.ajax({
                 type: "DELETE",
@@ -251,7 +216,7 @@
                     if (resp.success === true) {
                         Swal.fire({
                         title: "Good job!",
-                        text: "You clicked the button!",
+                        text: resp.message,
                         icon: "success"
                         });
 

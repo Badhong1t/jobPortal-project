@@ -115,7 +115,7 @@
         <span class="menu-header-text">Pages</span>
       </li>
 
-      <li class="menu-item">
+      <li class="menu-item {{ Request::routeIs('testimonial') ? 'active open' : '' }}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class='menu-icon tf-icons bx bxs-book-content'></i>
           <div data-i18n="Content Section">Content Section</div>
@@ -176,6 +176,9 @@
           <li class="menu-item">
             <a href="auth-forgot-password-basic.html" class="menu-link" target="_blank">
               <div data-i18n="Basic">Forgot Password</div>
+          <li class="menu-item {{ Request::routeIs('testimonial') ? 'active open' : '' }}">
+            <a href="{{ route('testimonial') }}" class="menu-link">
+              <div data-i18n="Content">Testimonial Section</div>
             </a>
           </li>
         </ul>
@@ -198,6 +201,7 @@
           </li>
         </ul>
       </li>
+
       <!-- Components -->
       <li class="menu-header small text-uppercase"><span class="menu-header-text">Jobs Post</span></li>
 
@@ -223,7 +227,7 @@
       <!-- Forms & Tables -->
       <li class="menu-header small text-uppercase"><span class="menu-header-text">Company &amp; branch</span></li>
       <!-- Forms -->
-      <li class="menu-item {{  Request::routeIs('company.index') || Request::routeIs('companyaward.index') || Request::routeIs('companybrach.index')  ? 'active open' : '' }}">
+      <li class="menu-item {{  Request::routeIs('company.index') || Request::routeIs('companyaward.index') || Request::routeIs('for_companies.index') || Request::routeIs('companybrach.index')  ? 'active open' : '' }}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-box"></i>
           <div data-i18n="Form Elements">Company</div>
@@ -242,6 +246,11 @@
           <li class="menu-item {{  Request::routeIs('companybrach.*') ? 'active open' : '' }}">
             <a href="{{ route('companybrach.index') }}" class="menu-link">
               <div data-i18n="Input groups">Branchs</div>
+            </a>
+          </li>
+          <li class="menu-item {{  Request::routeIs('for_companies.index') ? 'active open' : '' }}">
+            <a href="{{ route('for_companies.index') }}" class="menu-link">
+              <div data-i18n="Input groups">For Companies FAQ</div>
             </a>
           </li>
         </ul>

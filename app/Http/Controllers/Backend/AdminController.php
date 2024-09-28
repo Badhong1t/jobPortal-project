@@ -29,7 +29,7 @@ class AdminController extends Controller
 
     function mailView(Request $request){
 
-        return view('backend.partials.mailSystem');
+        return view('backend.layouts.system_setting.mailSystem');
 
     }
 
@@ -101,7 +101,7 @@ class AdminController extends Controller
     function socialMediaView(){
 
         $social_link = Social_Media_Fields::latest('id')->get();
-        return view('backend.partials.socialMedia', compact('social_link'));
+        return view('backend.layouts.social_media.socialMedia', compact('social_link'));
 
     }
 
