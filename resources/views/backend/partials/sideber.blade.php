@@ -182,19 +182,19 @@
       <li class="menu-header small text-uppercase"><span class="menu-header-text">Jobs Post</span></li>
 
       <!-- User interface -->
-      <li class="menu-item {{ Request::routeIs('category.*') ? 'active open' : '' }}">
+      <li class="menu-item {{ Request::routeIs('category.index') || Request::routeIs('jobpost.index') ? 'active open' : '' }}">
         <a href="javascript:void(0)" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-box"></i>
           <div data-i18n="User interface">Jobs</div>
         </a>
         <ul class="menu-sub">
-          <li class="menu-item {{ Request::routeIs('category.*') ? 'active open' : '' }}">
+          <li class="menu-item {{ Request::routeIs('category.index') ? 'active open' : '' }}">
             <a href="{{ route('category.index') }}" class="menu-link">
               <div data-i18n="Accordion">Category</div>
             </a>
           </li>
-          <li class="menu-item">
-            <a href="ui-alerts.html" class="menu-link">
+          <li class="menu-item {{ Request::routeIs('jobpost.index') ? 'active open' : '' }}">
+            <a href="{{ route('jobpost.index')  }}" class="menu-link">
               <div data-i18n="Alerts">Job Post</div>
             </a>
           </li>

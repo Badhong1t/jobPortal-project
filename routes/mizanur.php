@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CMS\MediaPage\GalleryController;
 use App\Http\Controllers\Backend\CMS\MediaPage\HeaderController;
 use App\Http\Controllers\Backend\DynamicpageController;
+use App\Http\Controllers\Backend\JobPostController;
 use App\Http\Controllers\Backend\SocialmediaController;
 use App\Http\Controllers\Backend\SystemSettingController;
 use App\Http\Controllers\Backend\TagController;
@@ -88,4 +89,16 @@ Route::controller(GalleryController::class)->group(function () {
     Route::get('/gallery_image/edit/{id}', 'gallery_edit')->name('gallery_image.edit');
     Route::post('/gallery_image/update', 'gallery_update')->name('gallery_image.update');
     Route::delete('/gallery_image/delete/{id}', 'gallery_delete')->name('gallery_image.delete');
+})->middleware(['auth', 'verified']);
+
+
+//Jobs routes----------------
+Route::controller(JobPostController::class)->group(function () {
+    Route::get('/jobpost/index', 'job_index')->name('jobpost.index');
+    Route::get('/jobpost/create', 'job_create')->name('jobpost.create');
+    Route::post('/jobpost/store', 'job_store')->name('jobpost.store');
+    Route::get('/jobpost/edit/{id}', 'job_edit')->name('jobpost.edit');
+    Route::post('/jobpost/update/{id}', 'job_update')->name('jobpost.update');
+    Route::delete('/jobpost/delete/{id}', 'job_delete')->name('jobpost.delete');
+    Route::get('/jobpost/status/update/{id}', 'job_status_update')->name('jobpost.status.update');
 })->middleware(['auth', 'verified']);
