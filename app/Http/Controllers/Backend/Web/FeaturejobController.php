@@ -105,7 +105,6 @@ class FeaturejobController extends Controller
     // Update the specified company in storage
     public function featurejobupdate(Request $request,  $id)
     {
-        // $job = Featuredjob::findOrFail($id);
         $validator =  validator::make($request->all(),[
             'feature' => 'required',
             'price' => 'required',
@@ -137,7 +136,6 @@ class FeaturejobController extends Controller
       function featurejobstatus($id)
       {
           $data = Featuredjob::where('id', $id)->first();
-          // dd($data);
           if ($data->status == 1) {
               // If the current status is active, change it to inactive
               $data->status = 0;

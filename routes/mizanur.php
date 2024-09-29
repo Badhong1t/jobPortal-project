@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\CMS\MediaPage\HeaderController;
 use App\Http\Controllers\Backend\CMS\TestimonialController;
 use App\Http\Controllers\Backend\DynamicpageController;
 use App\Http\Controllers\Backend\JobPostController;
+use App\Http\Controllers\Backend\ServicesController;
 use App\Http\Controllers\Backend\SystemSettingController;
 use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Backend\Web\CompaniesController;
@@ -112,4 +113,15 @@ Route::controller(CompaniesController::class)->group(function () {
     Route::get('/companies/edit/{id}', 'companies_edit')->name('for_companies.edit');
     Route::post('/companies/update/{id}', 'companies_update')->name('for_companies.update');
     Route::delete('/companies/delete/{id}', 'companies_delete')->name('for_companies.delete');
+})->middleware(['auth', 'verified']);
+
+//Services.index Routes----------------ServicesController
+Route::controller(ServicesController::class)->group(function () {
+    Route::get('/services/index', 'services_index')->name('services.index');
+    Route::get('/services/create', 'services_create')->name('services.create');
+    Route::post('/services/store', 'services_store')->name('services.store');
+    Route::get('/services/edit/{id}', 'services_edit')->name('services.edit');
+    Route::post('/services/update/{id}', 'services_update')->name('services.update');
+    Route::delete('/services/delete/{id}', 'services_delete')->name('services.delete');
+    Route::get('/services/status/update/{id}', 'services_status_update')->name('services.status.update');
 })->middleware(['auth', 'verified']);

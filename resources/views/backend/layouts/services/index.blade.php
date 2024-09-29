@@ -9,18 +9,20 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Dynamic Pages</h4>
-                        <p class="card-description">Setup your dynamic page, please <code> provide your valid
+                        <h4 class="card-title">Our Services List</h4>
+                        <p class="card-description">Setup your Services , please <code> provide your valid
                             data</code>.</p>
                         <div style="display: flex;justify-content: end;"><a
-                                href="{{ route('dynamic_page.create') }}" class="btn btn-primary">Add Dynamic Page</a></div>
+                                href="{{ route('services.create') }}" class="btn btn-primary">Add
+                                Services</a></div>
                         <div class="table-responsive mt-4 p-4">
                             <table class="table table-hover" id="data-table">
                                 <thead>
                                     <tr>
                                         <th>Sl</th>
-                                        <th>Page Title</th>
-                                        <th>Page Content</th>
+                                        <th>Services Name</th>
+                                        <th>Description</th>
+                                        <th>Icon</th>
                                         <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
@@ -72,7 +74,7 @@
                     pagingType: "full_numbers",
                     dom: "<'row justify-content-between table-topbar'<'col-md-2 col-sm-4 px-0'l><'col-md-2 col-sm-4 px-0'f>>tipr",
                     ajax: {
-                        url: "{{ route('dynamic_page.index') }}",
+                        url: "{{ route('services.index') }}",
                         type: "get",
                     },
 
@@ -83,14 +85,20 @@
                             searchable: false
                         },
                         {
-                            data: 'page_title',
-                            name: 'page_title',
+                            data: 'service_name',
+                            name: 'service_name',
                             orderable: true,
                             searchable: true
                         },
                         {
-                            data: 'page_content',
-                            name: 'page_content',
+                            data: 'description',
+                            name: 'description',
+                            orderable: true,
+                            searchable: true
+                        },
+                        {
+                            data: 'icon_path',
+                            name: 'icon_path',
                             orderable: true,
                             searchable: true
                         },
@@ -138,7 +146,7 @@
         };
         // Delete Button
         function deleteItem(id) {
-            var url = '{{ route('dynamic_page.delete', ':id') }}';
+            var url = '{{ route('services.delete', ':id') }}';
             var csrfToken = '{{ csrf_token() }}';
             $.ajax({
                 type: "DELETE",
@@ -191,7 +199,7 @@
 
         // Status Change
         function statusChange(id) {
-            var url = '{{ route('dynamic_page.status', ':id') }}';
+            var url = '{{ route('services.status.update', ':id') }}';
             $.ajax({
                 type: "GET",
                 url: url.replace(':id', id),

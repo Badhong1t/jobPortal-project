@@ -115,14 +115,14 @@
         <span class="menu-header-text">Pages</span>
       </li>
 
-      <li class="menu-item {{ Request::routeIs('testimonial') ? 'active open' : '' }}">
+      <li class="menu-item {{ Request::routeIs('talent.index') || Request::routeIs('testimonial') ? 'active open' : '' }}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class='menu-icon tf-icons bx bxs-book-content'></i>
           <div data-i18n="Content Section">Content Section</div>
         </a>
         <ul class="menu-sub">
           <li class="menu-item">
-            <a href="" class="menu-link">
+            <a href="#" class="menu-link">
               <div data-i18n="Content">Find Work</div>
             </a>
           </li>
@@ -131,52 +131,7 @@
               <div data-i18n="Error">Find Talent</div>
             </a>
           </li>
-        </ul>
-      </li>
-
-      <li class="menu-item">
-        <a href="javascript:void(0);" class="menu-link menu-toggle">
-          <i class="menu-icon tf-icons bx bx-dock-top"></i>
-          <div data-i18n="Account Settings">Account Settings</div>
-        </a>
-        <ul class="menu-sub">
-          <li class="menu-item">
-            <a href="pages-account-settings-account.html" class="menu-link">
-              <div data-i18n="Account">Account</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="pages-account-settings-notifications.html" class="menu-link">
-              <div data-i18n="Notifications">Notifications</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="pages-account-settings-connections.html" class="menu-link">
-              <div data-i18n="Connections">Connections</div>
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li class="menu-item">
-        <a href="javascript:void(0);" class="menu-link menu-toggle">
-          <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
-          <div data-i18n="Authentications">Authentications</div>
-        </a>
-        <ul class="menu-sub">
-          <li class="menu-item">
-            <a href="auth-login-basic.html" class="menu-link" target="_blank">
-              <div data-i18n="Basic">Login</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="auth-register-basic.html" class="menu-link" target="_blank">
-              <div data-i18n="Basic">Register</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="auth-forgot-password-basic.html" class="menu-link" target="_blank">
-              <div data-i18n="Basic">Forgot Password</div>
-          <li class="menu-item {{ Request::routeIs('testimonial') ? 'active open' : '' }}">
+           <li class="menu-item {{ Request::routeIs('testimonial') ? 'active open' : '' }}">
             <a href="{{ route('testimonial') }}" class="menu-link">
               <div data-i18n="Content">Testimonial Section</div>
             </a>
@@ -308,21 +263,20 @@
             </ul>
         </li>
 
-        {{-- Message --}}
-    <li class="menu-header small text-uppercase"><span class="menu-header-text">Message</span></li>
-    <li class="menu-item  {{ Request::routeIs('contacts.index') ? 'active open' : '' }}">
-      <a href="javascript:void(0);" class="menu-link menu-toggle">
-          <i class='menu-icon tf-icons bx bx-detail'></i>
-        <div data-i18n="Form Elements">Message</div>
-      </a>
-      <ul class="menu-sub">
-          <li class="menu-item  {{ Request::routeIs('contacts.index') ? 'active open' : '' }}">
-            <a href="{{ route('contacts.index') }}" class="menu-link">
-              <div data-i18n="Message">Message</div>
-            </a>
-          </li>
-        </ul>
-    </li>
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Our Services</span></li>
+        <li class="menu-item {{  Request::routeIs('services.index') ? 'active open' : '' }}">
+          <a href="javascript:void(0);" class="menu-link menu-toggle ">
+            <i class='menu-icon bx bxs-spreadsheet'></i>
+            <div data-i18n="Form Elements">Services</div>
+          </a>
+          <ul class="menu-sub">
+              <li class="menu-item {{ Request::routeIs('services.index') ? 'active open' : '' }}">
+                <a href="{{ route('services.index') }}" class="menu-link">
+                  <div data-i18n="Feature">All Services</div>
+                </a>
+              </li>
+            </ul>
+        </li>
 
       <!-- Settings -->
       <li class="menu-header small text-uppercase"><span class="menu-header-text">Settings</span></li>
