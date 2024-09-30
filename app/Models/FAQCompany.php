@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Socialmedia extends Model
+class FAQCompany extends Model
 {
     use HasFactory;
+
     protected $guarded = ['id'];
-    protected $table="social_media";
 }

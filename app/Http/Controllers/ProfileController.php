@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Exception;
 use App\Models\User;
 use Illuminate\View\View;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
@@ -76,11 +76,26 @@ class ProfileController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+
         try {
             $user = User::find(Auth::id());
+
+            if ($request->hasFile('photo')) {
+                if (File::exists(public_path('backend/uploads/') . $user->photo)) {
+                    @unlink(public_path('backend/uploads/') . $user->photo);
+                }
+
+
+            $photo = time() . '.' . $request->file('photo')->getClientOriginalExtension();
+            $request->file('photo')->move(public_path('backend/uploads/'), $photo);
+
+                $user->photo = $photo;
+            }
+
             $user->update([
                 'name'  => $request->name,
                 'email' => $request->email,
+                'image'=> $request->image,
             ]);
             return redirect()->back()->with('t-success', 'Profile updated successfully');
         } catch (Exception) {

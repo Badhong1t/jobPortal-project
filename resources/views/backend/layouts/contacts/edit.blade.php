@@ -56,21 +56,6 @@
                                         @enderror
                                     </div>
                                 </div>
-                                    {{-- <div class="form-group row mb-3">
-                                        <div class="col">
-                                            <label>Award Image :</label>
-                                            <input type="file"
-                                                class="form-control form-control-md border-left-0 dropify @error('logo') is-invalid @enderror"
-                                                name="award_image"
-                                                data-default-file="@isset($companyaward){{ url('backend/uploads/' . $companyaward->award_image) }}@endisset">
-                                            @error('logo')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-
-                                    </div> --}}
                                     <div class="form-group row mb-3">
                                     <div class="col">
                                         <label class="form-lable" for="basic-default-address">address :</label>

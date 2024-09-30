@@ -20,25 +20,26 @@
                 <div class="card-body">
                     <h1>Branch</h1>
                     <div style="display: flex;justify-content: end;"><a
-                        href="{{ route('companybranch.create') }}" class="btn btn-primary mb-3">Create New</a></div>
-                    {{-- <a href="{{ route('company.create') }}">Create Company</a> --}}
-                    <table class="table table-hover" id="data-table" style="width:1200px">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Company Name</th>
-                                <th>Branch Name</th>
-                                <th>Address</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                        href="{{ route('companybranch.create') }}" class="btn btn-primary mb-3">Create New</a></div>s
+                    <div class="table-responsive mt-4 p-4">
+                        <table class="table table-hover" id="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Company Name</th>
+                                    <th>Branch Name</th>
+                                    <th>Address</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

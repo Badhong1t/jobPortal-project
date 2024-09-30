@@ -18,11 +18,6 @@ class TagController extends Controller
             $data = Tag::latest();
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->addColumn('name', function ($data) {
-                    $name = $data->name;
-                    $status = '<p>' . $name . ' </p>';
-                    return $status;
-                })
                 ->addColumn('action', function ($data) {
                     return '<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                                   <a href="' . route('tag.edit', ['id'=>$data->id]) . '" type="button" class="btn btn-primary text-white" title="Edit">
@@ -33,7 +28,7 @@ class TagController extends Controller
                                 </a>
                                 </div>';
                 })
-                ->rawColumns(['name','action'])
+                ->rawColumns(['action'])
                 ->make(true);
         }
         return view('backend.layouts.tag.index');

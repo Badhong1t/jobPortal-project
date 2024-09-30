@@ -13,8 +13,7 @@
                         <p class="card-description">Setup your dynamic page, please <code> provide your valid
                             data</code>.</p>
                         <div style="display: flex;justify-content: end;"><a
-                                href="{{ route('dynamic_page.create') }}" class="btn btn-primary">Add Extra
-                                Services</a></div>
+                                href="{{ route('dynamic_page.create') }}" class="btn btn-primary">Add Dynamic Page</a></div>
                         <div class="table-responsive mt-4 p-4">
                             <table class="table table-hover" id="data-table">
                                 <thead>
@@ -61,9 +60,9 @@
 
                     language: {
                         processing: `<div class="text-center">
-                            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                          </div>
+                                <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
                             </div>`
                     },
 
@@ -117,9 +116,6 @@
                 });
             }
         });
-
-
-
         // delete Confirm
      function showDeleteConfirm(id) {
             event.preventDefault();

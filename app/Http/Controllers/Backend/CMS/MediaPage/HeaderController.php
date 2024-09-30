@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\CMS\MediaPage;
 
 use App\Http\Controllers\Controller;
+use App\Models\CMS;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +31,11 @@ class HeaderController extends Controller
         $image = $request->file('image_url');
         if ($image) {
             //image delete
-            unlink('storage/header/'.$request->old_image_url);
+            $image = CMS::find($request->id);
+            if ($image->image_url != null) {
+                $old_image = public_path('storage/header/'.$image->old_image_urls);
+                unlink($old_image);
+            }
             //new image upload
             $image = $request->image_url;
             $extension = $image->extension();

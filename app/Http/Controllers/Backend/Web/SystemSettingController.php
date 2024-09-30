@@ -41,12 +41,12 @@ class SystemSettingController extends Controller
             $setting->copyright = $request->copyright;
 
             if ($request->hasFile('logo')) {
-                if (File::exists(public_path('backend/uploads') . $setting->logo)) {
-                    @unlink(public_path('backend/uploads') . $setting->logo);
+                if (File::exists(public_path('backend/uploads/') . $setting->logo)) {
+                    @unlink(public_path('backend/uploads/') . $setting->logo);
                 }
 
 
-            $logo = time() . '_' . $request->file('logo')->getClientOriginalExtension();
+            $logo = time() . '.' . $request->file('logo')->getClientOriginalExtension();
             $request->file('logo')->move(public_path('backend/uploads'), $logo);
 
                 // $logo = uploadImage($request->file('logo'), 'setting/logo');
@@ -54,10 +54,10 @@ class SystemSettingController extends Controller
             }
 
             if ($request->hasFile('favicon')) {
-                if (File::exists(public_path('backend/uploads') . $setting->favicon)) {
-                    File::delete(public_path('backend/uploads') . $setting->favicon);
+                if (File::exists(public_path('backend/uploads/') . $setting->favicon)) {
+                    File::delete(public_path('backend/uploads/') . $setting->favicon);
                 }
-                $favicon = time() . '_' . $request->file('favicon')->getClientOriginalExtension();
+                $favicon = time() . '.' . $request->file('favicon')->getClientOriginalExtension();
                 // $favicon = uploadImage($request->file('favicon'), 'setting/favicon');
                 $setting->favicon = $favicon;
             }

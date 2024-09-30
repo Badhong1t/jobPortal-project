@@ -56,7 +56,7 @@
                                         <input type="file"
                                             class="form-control form-control-md border-left-0 dropify @error('logo') is-invalid @enderror"
                                             name="logo"
-                                            data-default-file="@isset($setting){{ asset('uploads/' . $setting->logo) }}@endisset">
+                                            data-default-file="@isset($setting){{ asset('backend/uploads/' . $setting->logo) }}@endisset">
                                         @error('logo')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -68,7 +68,7 @@
                                         <input type="file"
                                             class="form-control form-control-md border-left-0 dropify @error('favicon') is-invalid @enderror"
                                             name="favicon"
-                                            data-default-file="@isset($setting){{ asset('uploads/' . $setting->favicon) }}@endisset">
+                                            data-default-file="@isset($setting){{ asset('backend/uploads/' . $setting->favicon) }}@endisset">
                                         @error('favicon')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>

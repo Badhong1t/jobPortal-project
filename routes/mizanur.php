@@ -5,11 +5,13 @@ use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CMS\MediaPage\GalleryController;
 use App\Http\Controllers\Backend\CMS\MediaPage\HeaderController;
+use App\Http\Controllers\Backend\CMS\TestimonialController;
 use App\Http\Controllers\Backend\DynamicpageController;
 use App\Http\Controllers\Backend\JobPostController;
-use App\Http\Controllers\Backend\SocialmediaController;
+use App\Http\Controllers\Backend\ServicesController;
 use App\Http\Controllers\Backend\SystemSettingController;
 use App\Http\Controllers\Backend\TagController;
+use App\Http\Controllers\Backend\Web\CompaniesController;
 use Illuminate\Support\Facades\Route;
 
 //admin profile routes---------
@@ -33,12 +35,6 @@ Route::controller(DynamicpageController::class)->group(function () {
     Route::post('/dynamic-page/update/{id}', 'page_update')->name('dynamic_page.update');
     Route::get('/dynamic-page/status/{id}',  'status')->name('dynamic_page.status');
     Route::delete('/dynamic-page/delete/{id}', 'dynamicPageDelete')->name('dynamic_page.delete');
-})->middleware(['auth', 'verified']);
-//Social Media routes---------
-Route::controller(SocialmediaController::class)->group(function () {
-    Route::get('/social-media', 'socialMedia')->name('socialmedia.index');
-    Route::post('/system/social', 'update')->name('socialmedia.update');
-    Route::delete('/system/social/{id}', 'destroy')->name('socialmedia.delete');
 })->middleware(['auth', 'verified']);
 
 //tegs routes---------
@@ -101,4 +97,31 @@ Route::controller(JobPostController::class)->group(function () {
     Route::post('/jobpost/update/{id}', 'job_update')->name('jobpost.update');
     Route::delete('/jobpost/delete/{id}', 'job_delete')->name('jobpost.delete');
     Route::get('/jobpost/status/update/{id}', 'job_status_update')->name('jobpost.status.update');
+})->middleware(['auth', 'verified']);
+
+//Testimonial Section routes---------
+Route::controller(TestimonialController::class)->group(function () {
+    Route::get('/testmonial/index', 'index')->name('testimonial');
+    Route::post('/testmonial/update', 'update')->name('cms.testimonial.update');
+})->middleware(['auth', 'verified']);
+
+//for_companies Routes----------------CompaniesController
+Route::controller(CompaniesController::class)->group(function () {
+    Route::get('/companies/FAQ/index', 'companies_index')->name('for_companies.index');
+    Route::get('/companies/FAQ/create', 'companies_create')->name('for_companies.create');
+    Route::post('/companies/store', 'companies_store')->name('for_companies.store');
+    Route::get('/companies/edit/{id}', 'companies_edit')->name('for_companies.edit');
+    Route::post('/companies/update/{id}', 'companies_update')->name('for_companies.update');
+    Route::delete('/companies/delete/{id}', 'companies_delete')->name('for_companies.delete');
+})->middleware(['auth', 'verified']);
+
+//Services.index Routes----------------ServicesController
+Route::controller(ServicesController::class)->group(function () {
+    Route::get('/services/index', 'services_index')->name('services.index');
+    Route::get('/services/create', 'services_create')->name('services.create');
+    Route::post('/services/store', 'services_store')->name('services.store');
+    Route::get('/services/edit/{id}', 'services_edit')->name('services.edit');
+    Route::post('/services/update/{id}', 'services_update')->name('services.update');
+    Route::delete('/services/delete/{id}', 'services_delete')->name('services.delete');
+    Route::get('/services/status/update/{id}', 'services_status_update')->name('services.status.update');
 })->middleware(['auth', 'verified']);

@@ -115,15 +115,20 @@
         <span class="menu-header-text">Pages</span>
       </li>
 
+<<<<<<< HEAD
       {{-- Content Section --}}
 
       <li class="menu-item">
+=======
+      <li class="menu-item {{ Request::routeIs('talent.index') || Request::routeIs('testimonial') ? 'active open' : '' }}">
+>>>>>>> 3d9a8917cbfc29df5a419d6a146a2a89b669dbe6
         <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class='menu-icon tf-icons bx bxs-book-content'></i>
           <div data-i18n="Content Section">Content Section</div>
         </a>
         <ul class="menu-sub">
           <li class="menu-item">
+<<<<<<< HEAD
             <a href="{{ route('backend.findWork.index') }}" class="menu-link">
               <div data-i18n="Content">Find Work</div>
             </a>
@@ -178,6 +183,20 @@
           <li class="menu-item">
             <a href="auth-forgot-password-basic.html" class="menu-link" target="_blank">
               <div data-i18n="Basic">Forgot Password</div>
+=======
+            <a href="#" class="menu-link">
+              <div data-i18n="Content">Find Work</div>
+            </a>
+          </li>
+          <li class="menu-item {{ Request::routeIs('talent.index') ? 'active open' : '' }}">
+            <a href="{{ route('talent.index') }}" class="menu-link">
+              <div data-i18n="Error">Find Talent</div>
+            </a>
+          </li>
+           <li class="menu-item {{ Request::routeIs('testimonial') ? 'active open' : '' }}">
+            <a href="{{ route('testimonial') }}" class="menu-link">
+              <div data-i18n="Content">Testimonial Section</div>
+>>>>>>> 3d9a8917cbfc29df5a419d6a146a2a89b669dbe6
             </a>
           </li>
         </ul>
@@ -200,6 +219,7 @@
           </li>
         </ul>
       </li>
+
       <!-- Components -->
       <li class="menu-header small text-uppercase"><span class="menu-header-text">Jobs Post</span></li>
 
@@ -225,7 +245,7 @@
       <!-- Forms & Tables -->
       <li class="menu-header small text-uppercase"><span class="menu-header-text">Company &amp; branch</span></li>
       <!-- Forms -->
-      <li class="menu-item {{  Request::routeIs('company.index') || Request::routeIs('companyaward.index') || Request::routeIs('companybrach.index')  ? 'active open' : '' }}">
+      <li class="menu-item {{  Request::routeIs('company.index') || Request::routeIs('companyaward.index') || Request::routeIs('for_companies.index') || Request::routeIs('companybrach.index')  ? 'active open' : '' }}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-box"></i>
           <div data-i18n="Form Elements">Company</div>
@@ -246,9 +266,15 @@
               <div data-i18n="Input groups">Branchs</div>
             </a>
           </li>
+<<<<<<< HEAD
           <li class="menu-item {{  Request::routeIs('company.facilities*') ? 'active open' : '' }}">
             <a href="{{ route('backend.companyFacilities.index') }}" class="menu-link">
               <div data-i18n="Basic Inputs">Company Facilities</div>
+=======
+          <li class="menu-item {{  Request::routeIs('for_companies.index') ? 'active open' : '' }}">
+            <a href="{{ route('for_companies.index') }}" class="menu-link">
+              <div data-i18n="Input groups">For Companies FAQ</div>
+>>>>>>> 3d9a8917cbfc29df5a419d6a146a2a89b669dbe6
             </a>
           </li>
         </ul>
@@ -290,20 +316,36 @@
         </ul>
     </li>
 
-    <li class="menu-header small text-uppercase"><span class="menu-header-text">Message</span></li>
-    <li class="menu-item  {{ Request::routeIs('contacts.index') ? 'active open' : '' }}">
-      <a href="javascript:void(0);" class="menu-link menu-toggle">
-          <i class='menu-icon tf-icons bx bx-detail'></i>
-        <div data-i18n="Form Elements">Message</div>
-      </a>
-      <ul class="menu-sub">
-          <li class="menu-item  {{ Request::routeIs('contacts.index') ? 'active open' : '' }}">
-            <a href="{{ route('contacts.index') }}" class="menu-link">
-              <div data-i18n="Message">Message</div>
-            </a>
-          </li>
-        </ul>
-    </li>
+        {{-- feature --}}
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Feature Job</span></li>
+        <li class="menu-item {{  Request::routeIs('featurejob.*') ? 'active open' : '' }}">
+          <a href="javascript:void(0);" class="menu-link menu-toggle ">
+              <i class='menu-icon tf-icons bx bxs-flag-alt'></i>
+            <div data-i18n="Form Elements">Feature Job</div>
+          </a>
+          <ul class="menu-sub">
+              <li class="menu-item {{ Request::routeIs('featurejob.*') ? 'active open' : '' }}">
+                <a href="{{ route('featurejob.index') }}" class="menu-link">
+                  <div data-i18n="Feature">Feature</div>
+                </a>
+              </li>
+            </ul>
+        </li>
+
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Our Services</span></li>
+        <li class="menu-item {{  Request::routeIs('services.index') ? 'active open' : '' }}">
+          <a href="javascript:void(0);" class="menu-link menu-toggle ">
+            <i class='menu-icon bx bxs-spreadsheet'></i>
+            <div data-i18n="Form Elements">Services</div>
+          </a>
+          <ul class="menu-sub">
+              <li class="menu-item {{ Request::routeIs('services.index') ? 'active open' : '' }}">
+                <a href="{{ route('services.index') }}" class="menu-link">
+                  <div data-i18n="Feature">All Services</div>
+                </a>
+              </li>
+            </ul>
+        </li>
 
       <!-- Settings -->
       <li class="menu-header small text-uppercase"><span class="menu-header-text">Settings</span></li>

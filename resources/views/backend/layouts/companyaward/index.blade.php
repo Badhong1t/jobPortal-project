@@ -21,24 +21,26 @@
                     <h1>Award</h1>
                     <div style="display: flex;justify-content: end;"><a
                         href="{{ route('companyaward.create') }}" class="btn btn-primary mb-3">Create New</a></div>
-                    {{-- <a href="{{ route('company.create') }}">Create Company</a> --}}
-                    <table class="table table-hover" id="data-tables" style="width:1200px">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Award Name</th>
-                                <th>Award Image</th>
-                                <th>Company Name</th>
-                                <th>Date</th>
-                                <th>Month</th>
-                                <th>Year</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
 
-                        </tbody>
-                    </table>
+                    <div class="table-responsive mt-4 p-4">
+                        <table class="table table-hover" id="data-tables">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Award Name</th>
+                                    <th>Award Image</th>
+                                    <th>Company Name</th>
+                                    <th>Date</th>
+                                    <th>Month</th>
+                                    <th>Year</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

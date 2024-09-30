@@ -20,24 +20,26 @@
                     <h1 class="card-title">Companies</h1>
                     <div style="display: flex;justify-content: end;"><a
                         href="{{ route('company.create') }}" class="btn btn-primary mb-3">Create Company</a></div>
-                    <table class="table table-hover" id="data-table" style="width:1200px">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-                                <th>Country Name</th>
-                                <th>Company Logo</th>
-                                <th>Address</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <div class="table-responsive mt-4 p-4">
+                        <table class="table table-hover" id="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Country Name</th>
+                                    <th>Company Logo</th>
+                                    <th>Address</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
              </div>
           </div>
         </div>

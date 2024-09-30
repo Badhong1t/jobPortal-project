@@ -20,11 +20,6 @@ class DynamicpageController extends Controller
             $data = DynamicPage::latest();
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->addColumn('page_title', function ($data) {
-                    $page_title = $data->page_title;
-                    $status = '<p>' . $page_title . ' </p>';
-                    return $status;
-                })
                 ->addColumn('page_content', function ($data) {
                     $page_content = str::length($data->page_content) > 100 ? substr($data->page_content, 0, 100) . '...' : $data->page_content;
                     $status = '<p>' . $page_content . ' </p>';
@@ -51,7 +46,7 @@ class DynamicpageController extends Controller
                                 </a>
                                 </div>';
                 })
-                ->rawColumns(['page_title', 'page_content', 'status', 'action'])
+                ->rawColumns(['page_content', 'status', 'action'])
                 ->make(true);
         }
         return view('backend.layouts.pages.index');

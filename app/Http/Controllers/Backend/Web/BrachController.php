@@ -29,18 +29,6 @@ class BrachController extends Controller
                 ->addColumn("company", function ($data) {
                     return $data->company->company_name;
                 })
-                ->addColumn("branch_name", function ($data) {
-                    return $data->branch_name;
-                })
-                ->addColumn("address", function ($data) {
-                    return $data->address;
-                })
-                ->addColumn("phone", function ($data) {
-                    return $data->phone;
-                })
-                ->addColumn("email", function ($data) {
-                    return $data->email;
-                })
                 ->addColumn('status', function ($data) {
                     $status = ' <div class="form-check form-switch" style="margin-left:40px;">';
                     $status .= ' <input for="customSwitch' . $data->id . '" onclick="showStatusChangeAlert(' . $data->id . ')" type="checkbox" class="form-check-input" id="customSwitch' . $data->id . '" getAreaid="' . $data->id . '" name="status"';
@@ -62,7 +50,7 @@ class BrachController extends Controller
                                 </div>';
                 })
 
-                ->rawColumns(['company','branch_name','address','phone','email','status','action'])
+                ->rawColumns(['company','status','action'])
                 ->make(true);
         }
         return view('backend.layouts.companybranch.index');

@@ -17,7 +17,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <h1>Branch</h1>
+                    <h1>Message</h1>
                     <div style="display: flex;justify-content: end;">
                         {{-- <a href="{{ route('contacts.create') }}" class="btn btn-primary mb-3">Create New</a> --}}
                     </div>

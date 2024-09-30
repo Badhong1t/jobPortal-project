@@ -6,10 +6,12 @@ use Exception;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\FAQCompany;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
-// use Symfony\Component\HttpFoundation\File\File;
+use Illuminate\Support\Str;
 
 class CompaniesController extends Controller
 {
@@ -124,7 +126,7 @@ class CompaniesController extends Controller
 
     }
 
-  
+
     public function companyedit(Company $companys, $id)
 
     {
@@ -222,4 +224,106 @@ class CompaniesController extends Controller
             'success'=> true,
         ]);
     }
+
+    //__companies FAQ index method__//
+
+    public function companies_index(Request $request)
+    {
+
+        if ($request->ajax()) {
+            $data = FAQCompany::latest();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('description', function ($data) {
+                    $description = str::length($data->description) > 200 ? substr($data->description, 0, 200) . '...' : $data->description;
+                    $status = '<p>' . $description . ' </p>';
+                    return $status;
+                })
+                ->addColumn('action', function ($data) {
+                    return '<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                  <a href="' . route('for_companies.edit', ['id'=>$data->id]) . '" type="button" class="btn btn-primary text-white" title="Edit">
+                                  <i class="bx bx-pencil"></i>
+                                  </a>
+                                  <a href="#" onclick="showDeleteConfirm(' . $data->id . ')" type="button" class="btn btn-danger text-white" title="Delete">
+                                  <i class="bx bx-trash"></i>
+                                </a>
+                                </div>';
+                })
+                ->rawColumns(['description','action'])
+                ->make(true);
+        }
+        return view('backend.layouts.company.faq.index');
+    }
+    //__companies FAQ cretate method__//
+    public function companies_create()
+    {
+        return view('backend.layouts.company.faq.create');
+    }
+
+    //__companies FAQ store method__//
+    public function companies_store(Request $request)
+    {
+        $validator =  validator::make($request->all(),[
+            'title' => 'required',
+            'description' => 'required|max:1000',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $data = new FAQCompany();
+        $data->title = $request->title;
+        $data->description = $request->description;
+        $data->created_at = Carbon::now();
+        $data->save();
+        return redirect()->route('for_companies.index')->with('t-success', 'Created successfully!');
+    }
+
+    //__companies FAQ edit method__//
+    public function companies_edit($id)
+    {
+        $data = FAQCompany::where('id', $id)->first();
+        return view('backend.layouts.company.faq.edit', compact('data'));
+    }
+
+    //__companies FAQ update method__//
+    public function companies_update(Request $request, $id)
+    {
+        $validator =  validator::make($request->all(),[
+            'title' => 'required',
+            'description' => 'required|max:1000',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $update=FAQCompany::find($id)->update([
+           'title' => $request->title,
+           'description' => $request->description,
+           'updated_at' => Carbon::now(),
+        ]);
+        if ($update) {
+            return redirect()->route('for_companies.index')->with('t-success', 'Updated successfully.');
+        } else {
+            return redirect()->route('for_companies.index')->with('t-error', 'failed updated.');
+        }
+    }
+
+    //__companies FAQ delete method__//
+    public function companies_delete($id)
+    {
+        $data = FAQCompany::find($id);
+        $data->delete();
+        if (!$data) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Data not found.'
+            ]);
+        }
+        return response()->json([
+            'success'=> true,
+            'message' => 'FAQ deleted successfully',
+        ]);
+    }
+
 }

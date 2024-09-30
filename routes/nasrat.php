@@ -5,6 +5,8 @@ use App\Http\Controllers\Backend\Web\AwardController;
 use App\Http\Controllers\Backend\Web\BrachController;
 use App\Http\Controllers\Backend\Web\ContactsController;
 use App\Http\Controllers\Backend\Web\CompaniesController;
+use App\Http\Controllers\Backend\Web\FeaturejobController;
+use App\Http\Controllers\Backend\Web\FindtalentController;
 use App\Http\Controllers\Backend\Web\SystemSettingController;
 
 
@@ -48,10 +50,24 @@ Route::delete('/companybranch/delete/{id}',[BrachController::class,'companybranc
 
 
 
+Route::get('/feature-show',[FeaturejobController::class,'allfeature'])->middleware(['auth', 'verified'])->name('featurejob.index');
+Route::get('/featurejob/create',[FeaturejobController::class,'featurejobcreate'])->middleware(['auth', 'verified'])->name('featurejob.create');
+Route::post('/featurejob/create',[FeaturejobController::class,'featurejobstore'])->middleware(['auth', 'verified'])->name('featurejob.store');
+Route::get('/featurejob/update/{id}',[FeaturejobController::class,'featurejobedit'])->middleware(['auth', 'verified'])->name('featurejob.edit');
+Route::patch('/featurejob/update/{id}',[FeaturejobController::class,'featurejobupdate'])->middleware(['auth', 'verified'])->name('featurejob.update');
+Route::get('/featurejob/status/{id}',[FeaturejobController::class,'featurejobstatus'])->middleware(['auth', 'verified'])->name('featurejob.status');
+Route::delete('/featurejob/delete/{id}',[FeaturejobController::class,'featurejobdelete'])->middleware(['auth', 'verified'])->name('featurejob.delete');
+
+
+
 Route::get('/contacts-show',[ContactsController::class,'allcontacts'])->middleware(['auth', 'verified'])->name('contacts.index');
 Route::get('/contacts/create',[ContactsController::class,'contactcreate'])->middleware(['auth', 'verified'])->name('contacts.create');
 Route::post('/contacts/create',[ContactsController::class,'contactstore'])->middleware(['auth', 'verified'])->name('contacts.store');
 Route::delete('/contacts/delete/{id}',[ContactsController::class,'contactdelete'])->middleware(['auth', 'verified'])->name('contacts.delete');
+
+
+Route::get('/talent-index', [FindtalentController::class,'talentindex'])->middleware(['auth', 'verified'])->name('talent.index');
+Route::post('/talent-update', [FindtalentController::class,'talentupdate'])->middleware(['auth', 'verified'])->name('talent.update');
 
 
 require __DIR__.'/auth.php';
