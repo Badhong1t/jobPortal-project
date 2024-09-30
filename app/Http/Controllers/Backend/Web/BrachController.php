@@ -4,14 +4,11 @@ namespace App\Http\Controllers\Backend\Web;
 
 use Exception;
 use App\Models\Company;
-use App\Models\Companyaward;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\CompanyBranch;
-use Illuminate\Support\Facades\View;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
-// use Symfony\Component\HttpFoundation\File\File;
 use Illuminate\Support\Facades\File;
 
 class BrachController extends Controller
@@ -29,18 +26,6 @@ class BrachController extends Controller
                 ->addColumn("company", function ($data) {
                     return $data->company->company_name;
                 })
-                ->addColumn("branch_name", function ($data) {
-                    return $data->branch_name;
-                })
-                ->addColumn("address", function ($data) {
-                    return $data->address;
-                })
-                ->addColumn("phone", function ($data) {
-                    return $data->phone;
-                })
-                ->addColumn("email", function ($data) {
-                    return $data->email;
-                })
                 ->addColumn('status', function ($data) {
                     $status = ' <div class="form-check form-switch" style="margin-left:40px;">';
                     $status .= ' <input for="customSwitch' . $data->id . '" onclick="showStatusChangeAlert(' . $data->id . ')" type="checkbox" class="form-check-input" id="customSwitch' . $data->id . '" getAreaid="' . $data->id . '" name="status"';
@@ -56,13 +41,12 @@ class BrachController extends Controller
                                   <a href="' . route('companybranch.edit',  $data->id) . '" type="button" class="btn btn-primary text-white" title="Edit">
                                   <i class="bi bi-pencil"></i>Edit
                                   </a>
-                                  <a href="' . route('company.delete',  $data->id) . '"  onclick="showDeleteConfirm(' . $data->id . ')" type="button" class="btn btn-danger text-white" title="Delete">
+                                  <a href="' . route('companybranch.delete',  $data->id) . '"  onclick="showDeleteConfirm(' . $data->id . ')" type="button" class="btn btn-danger text-white" title="Delete">
                                   <i class="bi bi-trash"></i>Delete
                                 </a>
                                 </div>';
                 })
-
-                ->rawColumns(['company','branch_name','address','phone','email','status','action'])
+                ->rawColumns(['status','action'])
                 ->make(true);
         }
         return view('backend.layouts.companybranch.index');
@@ -105,11 +89,6 @@ class BrachController extends Controller
         }
     }
 
-    // Display the specified award
-    // public function show(CompanyAward $companyAward)
-    // {
-    //     return view('companyawards.show', compact('companyAward'));
-    // }
 
     // Show the form for editing the specified award
     public function companybranchedit($id)

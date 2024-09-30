@@ -22,21 +22,21 @@ class ContactsController extends Controller
             $data = Contact::with('company')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->addColumn("name", function ($data) {
-                    return $data->name;
-                })
+                // ->addColumn("name", function ($data) {
+                //     return $data->name;
+                // })
                 ->addColumn("company", function ($data) {
                     return $data->company->company_name;
                 })
-                ->addColumn("email", function ($data) {
-                    return $data->email;
-                })
-                ->addColumn("phone", function ($data) {
-                    return $data->phone;
-                })
-                ->addColumn('message', function ($data) {
-                    return $data->message;
-                })
+                // ->addColumn("email", function ($data) {
+                //     return $data->email;
+                // })
+                // ->addColumn("phone", function ($data) {
+                //     return $data->phone;
+                // })
+                // ->addColumn('message', function ($data) {
+                //     return $data->message;
+                // })
                 ->addColumn('action', function ($data) {
                     return '<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                                   <a href="' . route('contacts.delete',  $data->id) . '"  onclick="showDeleteConfirm(' . $data->id . ')" type="button" class="btn btn-danger text-white" title="Delete">
@@ -45,7 +45,8 @@ class ContactsController extends Controller
                                 </div>';
                 })
 
-                ->rawColumns(['name','company','phone','email','message','action'])
+                // ->rawColumns(['name','company','phone','email','message','action'])
+                ->rawColumns(['company','action'])
                 ->make(true);
         }
         return view('backend.layouts.contacts.index');

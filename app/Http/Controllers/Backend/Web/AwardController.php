@@ -7,7 +7,6 @@ use App\Models\Company;
 use App\Models\Companyaward;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\View;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
@@ -29,7 +28,7 @@ class AwardController extends Controller
                 })
 
                 ->addColumn('award_image', function ($data) {
-                    $url = url('backend/uploads/' . $data->award_image); // Use asset() for better handling
+                    $url = asset('backend/uploads/' . $data->award_image);
                     return '<img src="'.$url.'" alt="image" width="100" height="60" style="border-radius: 6px;">';
                 })
 
@@ -38,7 +37,7 @@ class AwardController extends Controller
                                   <a href="' . route('companyaward.edit',  $data->id) . '" type="button" class="btn btn-primary text-white" title="Edit">
                                   <i class="bi bi-pencil"></i>Edit
                                   </a>
-                                  <a href="' . route('company.delete',  $data->id) . '" onclick="showDeleteConfirm(' . $data->id . ')" type="button" class="btn btn-danger text-white" title="Delete">
+                                  <a href="' . route('companyaward.delete',  $data->id) . '" onclick="showDeleteConfirm(' . $data->id . ')" type="button" class="btn btn-danger text-white" title="Delete">
                                   <i class="bi bi-trash"></i>Delete
                                 </a>
                                 </div>';
@@ -94,11 +93,7 @@ class AwardController extends Controller
 
     }
 
-    // Display the specified award
-    // public function show(CompanyAward $companyAward)
-    // {
-    //     return view('companyawards.show', compact('companyAward'));
-    // }
+
 
     // Show the form for editing the specified award
     public function companyawardedit(CompanyAward $companyAward,$id)

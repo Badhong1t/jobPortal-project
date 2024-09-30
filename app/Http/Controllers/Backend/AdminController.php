@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Exception;
-// use Illuminate\Validation\Validator;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Social_Media_Fields;
 use Illuminate\Support\Facades\DB;
