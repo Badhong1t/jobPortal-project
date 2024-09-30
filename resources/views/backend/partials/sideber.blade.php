@@ -115,13 +115,13 @@
         <span class="menu-header-text">Pages</span>
       </li>
 
-      <li class="menu-item {{ Request::routeIs('talent.index') || Request::routeIs('testimonial') ? 'active open' : '' }}">
+      <li class="menu-item {{ Request::routeIs('backend.findWork.*') || Request::routeIs('talent.index') || Request::routeIs('testimonial') ? 'active open' : '' }}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class='menu-icon tf-icons bx bxs-book-content'></i>
           <div data-i18n="Content Section">Content Section</div>
         </a>
         <ul class="menu-sub">
-          <li class="menu-item">
+          <li class="menu-item {{ Request::routeIs('backend.findWork.*') ? 'active open' : '' }}">
             <a href="{{ route('backend.findWork.index') }}" class="menu-link">
               <div data-i18n="Content">Find Work</div>
             </a>
@@ -182,7 +182,7 @@
       <!-- Forms & Tables -->
       <li class="menu-header small text-uppercase"><span class="menu-header-text">Company &amp; branch</span></li>
       <!-- Forms -->
-      <li class="menu-item {{  Request::routeIs('company.index') || Request::routeIs('companyaward.index') || Request::routeIs('for_companies.index') || Request::routeIs('companybrach.index')  ? 'active open' : '' }}">
+      <li class="menu-item {{  Request::routeIs('company.index') || Request::routeIs('companyaward.index') || Request::routeIs('for_companies.index') || Request::routeIs('companybrach.index') || Request::routeIs('backend.companyFacilities.*') ? 'active open' : '' }}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-box"></i>
           <div data-i18n="Form Elements">Company</div>
@@ -203,9 +203,9 @@
               <div data-i18n="Input groups">Branchs</div>
             </a>
           </li>
-          <li class="menu-item {{  Request::routeIs('company.facilities*') ? 'active open' : '' }}">
+          <li class="menu-item {{  Request::routeIs('backend.companyFacilities.*') ? 'active open' : '' }}">
             <a href="{{ route('backend.companyFacilities.index') }}" class="menu-link">
-              <div data-i18n="Basic Inputs">Company Facilities</div>
+              <div data-i18n="Input groups">Company Facilities</div>
             </a>
          </li>
           <li class="menu-item {{  Request::routeIs('for_companies.index') ? 'active open' : '' }}">

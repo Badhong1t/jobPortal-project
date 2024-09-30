@@ -193,6 +193,8 @@
             });
         };
 
+
+        
         // Delete Button
         function deleteItem(id) {
             var url = '{{ route('backend.companyFacilities.delete',':id') }}';
