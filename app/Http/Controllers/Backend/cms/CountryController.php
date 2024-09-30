@@ -36,13 +36,13 @@ class CountryController extends Controller
                 ->make(true);
         }
 
-        return view("backend.layout.countries.index");
+        return view("backend.layouts.countries.index");
 
     }
 
     function create(){
 
-        return  view("backend.layout.countries.create");
+        return  view("backend.layouts.countries.create");
 
     }
 
@@ -90,7 +90,7 @@ class CountryController extends Controller
         $data = Country::findOrFail($id);
         // dd($data);
 
-        return view('backend.layout.countries.edit', compact('data'));
+        return view('backend.layouts.countries.edit', compact('data'));
 
     }
 

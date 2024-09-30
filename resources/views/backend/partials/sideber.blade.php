@@ -115,6 +115,8 @@
         <span class="menu-header-text">Pages</span>
       </li>
 
+      {{-- Content Section --}}
+
       <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class='menu-icon tf-icons bx bxs-book-content'></i>
@@ -122,12 +124,14 @@
         </a>
         <ul class="menu-sub">
           <li class="menu-item">
-            <a href="" class="menu-link">
+            <a href="{{ route('backend.findWork.index') }}" class="menu-link">
               <div data-i18n="Content">Find Work</div>
             </a>
           </li>
         </ul>
       </li>
+
+      {{-- Account Section --}}
 
       <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -152,6 +156,9 @@
           </li>
         </ul>
       </li>
+
+      {{-- Authentications Section --}}
+
       <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
@@ -237,6 +244,11 @@
           <li class="menu-item {{  Request::routeIs('companybrach.*') ? 'active open' : '' }}">
             <a href="{{ route('companybrach.index') }}" class="menu-link">
               <div data-i18n="Input groups">Branchs</div>
+            </a>
+          </li>
+          <li class="menu-item {{  Request::routeIs('company.facilities*') ? 'active open' : '' }}">
+            <a href="{{ route('backend.companyFacilities.index') }}" class="menu-link">
+              <div data-i18n="Basic Inputs">Company Facilities</div>
             </a>
           </li>
         </ul>
