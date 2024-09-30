@@ -24,30 +24,10 @@ class CompaniesController extends Controller
             $data = Company::latest();
             return DataTables::of($data)
                 ->addIndexColumn()
-
-                ->addColumn('company_name', function ($data) {
-                    return $data->company_name; // Adjust according to your model
-                })
-                ->addColumn('phone', function ($data) {
-                    return $data->phone; // Adjust according to your model
-                })
-                ->addColumn('email', function ($data) {
-                    return $data->email; // Adjust according to your model
-                })
-                ->addColumn('country_name', function ($data) {
-                    return $data->country_name; // Adjust according to your model
-                })
                 ->addColumn('company_log', function ($data) {
                     $url = url('backend/uploads/' . $data->company_log); // Use asset() for better handling
                     return '<img src="'.$url.'" alt="image" width="100" height="60" style="border-radius: 6px;">';
                 })
-
-
-
-                ->addColumn('address', function ($data) {
-                    return $data->address; // Adjust according to your model
-                })
-
                 ->addColumn('status', function ($data) {
                     $status = ' <div class="form-check form-switch" style="margin-left:40px;">';
                     $status .= ' <input onclick="showStatusChangeAlert(' . $data->id . ')" type="checkbox" class="form-check-input" id="customSwitch' . $data->id . '" getAreaid="' . $data->id . '" name="status"';
@@ -69,8 +49,7 @@ class CompaniesController extends Controller
                                 </a>
                                 </div>';
                 })
-
-                ->rawColumns(['company_name','phone','email','action','country_name','company_log','address','status'])
+                ->rawColumns(['action','company_log','status'])
                 ->make(true);
         }
         return view('backend.layouts.company.index');

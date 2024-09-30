@@ -193,7 +193,7 @@
                     } else {
                         toastr.error(resp.message);
                     }
-                    location.reload();
+                    // location.reload();
                 }, // success end
             })
         }

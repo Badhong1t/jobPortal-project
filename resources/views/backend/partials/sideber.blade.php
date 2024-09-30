@@ -122,7 +122,11 @@
         </a>
         <ul class="menu-sub">
           <li class="menu-item">
+<<<<<<< HEAD
             <a href="{{ route('backend.findWork.index') }}" class="menu-link">
+=======
+            <a href="#" class="menu-link">
+>>>>>>> 6330140cf29b693b3a2234f1a42366c85c588764
               <div data-i18n="Content">Find Work</div>
             </a>
           </li>
@@ -207,7 +211,11 @@
             <a href="{{ route('backend.companyFacilities.index') }}" class="menu-link">
               <div data-i18n="Basic Inputs">Company Facilities</div>
             </a>
+<<<<<<< HEAD
          </li>
+=======
+            </li>
+>>>>>>> 6330140cf29b693b3a2234f1a42366c85c588764
           <li class="menu-item {{  Request::routeIs('for_companies.index') ? 'active open' : '' }}">
             <a href="{{ route('for_companies.index') }}" class="menu-link">
               <div data-i18n="Input groups">For Companies FAQ</div>
