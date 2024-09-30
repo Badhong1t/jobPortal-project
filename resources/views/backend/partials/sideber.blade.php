@@ -122,11 +122,7 @@
         </a>
         <ul class="menu-sub">
           <li class="menu-item">
-<<<<<<< HEAD
             <a href="{{ route('backend.findWork.index') }}" class="menu-link">
-=======
-            <a href="#" class="menu-link">
->>>>>>> 6330140cf29b693b3a2234f1a42366c85c588764
               <div data-i18n="Content">Find Work</div>
             </a>
           </li>
