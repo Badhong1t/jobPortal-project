@@ -22,16 +22,6 @@ class FeaturejobController extends Controller
             $data = Featuredjob::all();
             return DataTables::of($data)
                 ->addIndexColumn()
-
-                ->addColumn('feature', function ($data) {
-                    return $data->feature; // Adjust according to your model
-                })
-                ->addColumn('price', function ($data) {
-                    return $data->price; // Adjust according to your model
-                })
-                ->addColumn('details', function ($data) {
-                    return $data->details; // Adjust according to your model
-                })
                 ->addColumn('status', function ($data) {
                     $status = ' <div class="form-check form-switch" style="margin-left:40px;">';
                     $status .= ' <input onclick="showStatusChangeAlert(' . $data->id . ')" type="checkbox" class="form-check-input" id="customSwitch' . $data->id . '" getAreaid="' . $data->id . '" name="status"';
@@ -53,7 +43,7 @@ class FeaturejobController extends Controller
                                 </div>';
                 })
 
-                ->rawColumns(['feature','price','details','action','status'])
+                ->rawColumns(['action','status'])
                 ->make(true);
         }
         return view('backend.layouts.feature_job.index');

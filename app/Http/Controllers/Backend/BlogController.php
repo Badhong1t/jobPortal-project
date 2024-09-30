@@ -27,11 +27,6 @@ class BlogController extends Controller
                 ->addColumn('image', function ($data) {
                     return "<img width='70px' src='" . asset('storage/blog/' .$data->image) . "' ></img>";
                 })
-                ->addColumn('title', function ($data) {
-                    $title = $data->title;
-                    $status = '<p>' . $title . ' </p>';
-                    return $status;
-                })
                 ->addColumn('status', function ($data) {
                     $status = ' <div class="form-check form-switch" style="margin-left:40px;">';
                     $status .= ' <input onclick="showStatusChangeAlert(' . $data->id . ')" type="checkbox" class="form-check-input" id="customSwitch' . $data->id . '" getAreaid="' . $data->id . '" name="status"';
@@ -52,7 +47,7 @@ class BlogController extends Controller
                                 </a>
                                 </div>';
                 })
-                ->rawColumns(['title','status','image','action'])
+                ->rawColumns(['status','image','action'])
                 ->make(true);
         }
         return view('backend.layouts.blog.index');

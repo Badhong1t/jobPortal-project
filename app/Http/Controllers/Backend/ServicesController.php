@@ -21,11 +21,6 @@ class ServicesController extends Controller
             $data = Services::latest();
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->addColumn('services_name', function ($data) {
-                    $service_name = $data->service_name;
-                    $status = '<p>' . $service_name . ' </p>';
-                    return $status;
-                })
                 ->addColumn('description', function ($data) {
                     $description = str::length($data->description) > 100 ? substr($data->description, 0, 100) . '...' : $data->description;
                     $status = '<p>' . $description . ' </p>';
@@ -55,7 +50,7 @@ class ServicesController extends Controller
                                 </a>
                                 </div>';
                 })
-                ->rawColumns(['service_name', 'description', 'status', 'icon_path', 'action'])
+                ->rawColumns(['description', 'status', 'icon_path', 'action'])
                 ->make(true);
         }
         // Display the services index page with all services data

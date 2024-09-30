@@ -23,11 +23,6 @@ class GalleryController extends Controller
                 ->addColumn('image', function ($data) {
                     return "<img width='70px' src='" . asset('storage/gallery/' .$data->image) . "' ></img>";
                 })
-                ->addColumn('title', function ($data) {
-                    $title = $data->title;
-                    $status = '<p>' . $title . ' </p>';
-                    return $status;
-                })
                 ->addColumn('action', function ($data) {
                     return '<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                                   <a href="' . route('gallery_image.edit', ['id'=>$data->id]) . '" type="button" class="btn btn-primary text-white" title="Edit">
@@ -38,7 +33,7 @@ class GalleryController extends Controller
                                 </a>
                                 </div>';
                 })
-                ->rawColumns(['title','image','action'])
+                ->rawColumns(['image','action'])
                 ->make(true);
             }
         return view('backend.layouts.gallery.index');
