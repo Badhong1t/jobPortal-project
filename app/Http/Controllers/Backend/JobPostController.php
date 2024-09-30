@@ -26,11 +26,6 @@ class JobPostController extends Controller
                 ->addColumn('image', function ($data) {
                     return "<img width='70px' src='" . asset('storage/jobpost/' .$data->image) . "' ></img>";
                 })
-                ->addColumn('job_name', function ($data) {
-                    $job_name = $data->job_name;
-                    $status = '<p>' . $job_name . ' </p>';
-                    return $status;
-                })
                 ->addColumn('status', function ($data) {
                     $status = ' <div class="form-check form-switch" style="margin-left:40px;">';
                     $status .= ' <input onclick="showStatusChangeAlert(' . $data->id . ')" type="checkbox" class="form-check-input" id="customSwitch' . $data->id . '" getAreaid="' . $data->id . '" name="status"';
@@ -51,7 +46,7 @@ class JobPostController extends Controller
                                 </a>
                                 </div>';
                 })
-                ->rawColumns(['job_name','status','image','action'])
+                ->rawColumns(['status','image','action'])
                 ->make(true);
         }
         return view('backend.layouts.jobpost.index');

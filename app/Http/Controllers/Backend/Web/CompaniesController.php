@@ -213,11 +213,6 @@ class CompaniesController extends Controller
             $data = FAQCompany::latest();
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->addColumn('title', function ($data) {
-                    $title = $data->title;
-                    $status = '<p>' . $title . ' </p>';
-                    return $status;
-                })
                 ->addColumn('description', function ($data) {
                     $description = str::length($data->description) > 200 ? substr($data->description, 0, 200) . '...' : $data->description;
                     $status = '<p>' . $description . ' </p>';
@@ -233,7 +228,7 @@ class CompaniesController extends Controller
                                 </a>
                                 </div>';
                 })
-                ->rawColumns(['title','description','action'])
+                ->rawColumns(['description','action'])
                 ->make(true);
         }
         return view('backend.layouts.company.faq.index');

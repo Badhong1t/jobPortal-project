@@ -26,12 +26,10 @@ class AwardController extends Controller
                 ->addColumn("company", function ($data) {
                     return $data->company->company_name;
                 })
-
                 ->addColumn('award_image', function ($data) {
                     $url = asset('backend/uploads/' . $data->award_image);
                     return '<img src="'.$url.'" alt="image" width="100" height="60" style="border-radius: 6px;">';
                 })
-
                 ->addColumn('action', function ($data) {
                     return '<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                                   <a href="' . route('companyaward.edit',  $data->id) . '" type="button" class="btn btn-primary text-white" title="Edit">

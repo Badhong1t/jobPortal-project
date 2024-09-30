@@ -46,7 +46,8 @@ class BrachController extends Controller
                                 </a>
                                 </div>';
                 })
-                ->rawColumns(['status','action'])
+
+                ->rawColumns(['company','status','action'])
                 ->make(true);
         }
         return view('backend.layouts.companybranch.index');
